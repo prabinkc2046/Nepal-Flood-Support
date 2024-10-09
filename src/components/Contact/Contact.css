@@ -1,0 +1,91 @@
+.contact-container {
+  width: 100%;
+}
+
+.contact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.contact-details {
+  margin-bottom: 20px;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.contact-item {
+  cursor: pointer; /* Indicate clickable */
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-item:hover {
+  background-color: #e0e0e0; /* Light grey on hover */
+}
+
+.contact-item svg {
+  margin-right: 10px; /* Spacing between icon and text */
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.contact-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50; /* Green */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+@media (min-width: 1100px) {
+  .contact-container h2 {
+    width: 100%;
+  }
+
+  .contact {
+    height: 300px;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  .contact-details {
+    width: 40%;
+    height: 100%;
+  }
+  .contact-form-container {
+    width: 60%;
+    height: 100%;
+  }
+  .contact-form {
+    justify-content: space-around;
+  }
+}

@@ -1,0 +1,154 @@
+/* Scoped Styles for Give Component */
+.give-container {
+  width: 100%;
+}
+
+/* Donation Info and Thank You Message Styling */
+.give-container .donation-info,
+.give-container .thank-you-message {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.give-container .donation-info h2,
+.give-container .thank-you-message h3 {
+  margin-top: 0;
+}
+
+.give-container .form-container {
+  width: 100%;
+}
+
+/* Form Group Styling */
+.give-container .donation-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensures form group takes full width */
+}
+
+.give-container .donation-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.give-container .donation-form input[type='text'],
+.give-container .donation-form input[type='email'],
+.give-container .donation-form textarea {
+  width: 100%; /* Inputs and textarea take full width */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.give-container .donation-form input[type='text']:focus,
+.give-container .donation-form input[type='email']:focus,
+.give-container .donation-form textarea:focus {
+  border-color: #007bff;
+}
+
+/* Toggle Switch Styling */
+.give-container .form-group.toggle-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.give-container .toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.give-container .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.give-container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.give-container .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.give-container .slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.give-container .switch input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.give-container .switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Button Styling */
+.give-container .donation-form button[type='submit'] {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%; /* Submit button takes full width */
+  transition: background-color 0.3s ease;
+}
+
+.give-container .donation-form button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .give-container .donation-info,
+  .give-container .donation-form,
+  .give-container .thank-you-message {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .give-container .form-group.toggle-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .give-container .donation-form button[type='submit'] {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .give-container .donation-form {
+    width: 100%; /* Ensure form takes full width in larger screens too */
+  }
+}

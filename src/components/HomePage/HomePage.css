@@ -1,0 +1,182 @@
+/* Default styles for mobile-first approach */
+.homepage-container {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.headline-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headline-section h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #c0392b; /* A strong, impactful color */
+}
+
+.headline-section p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.info-credit {
+  margin-top: 5px; /* Reduce top margin */
+  font-size: 0.8em; /* Smaller font size */
+  color: #999; /* Lighter color */
+  font-style: italic; /* Italic to reduce emphasis */
+  padding: 5px 0;
+  align-self: flex-end;
+}
+
+.info-credit a {
+  color: #999; /* Lighter link color */
+  text-decoration: none;
+}
+
+.info-credit a:hover {
+  text-decoration: underline;
+  color: #555; /* Slightly darker on hover */
+}
+
+.video-section {
+  position: relative;
+  margin: 20px auto;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-thumbnail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+}
+
+.theme-image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* Ensure the image covers the area */
+  height: 100%;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.video-player {
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  height: 90%;
+}
+
+.donate-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.donate-button {
+  background-color: #e74c3c; /* A vibrant, eye-catching color */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+  background-color: #c0392b; /* Darker shade on hover */
+}
+
+/* Video credit section */
+.video-credit {
+  font-size: 0.8em;
+  color: #999;
+  font-style: italic;
+  align-self: flex-end;
+  margin-right: 5px;
+}
+
+.video-credit a {
+  color: #999;
+  text-decoration: none;
+}
+
+.video-credit a:hover {
+  text-decoration: underline;
+  color: #555;
+}
+
+/* Media queries for tablet (min-width: 768px) */
+@media (min-width: 768px) {
+  .headline-section h1 {
+    font-size: 2.5em;
+  }
+
+  /* .theme-image {
+    height: 350px;
+  } */
+
+  .play-button {
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
+  }
+
+  /* .video-player {
+    height: 350px;
+  } */
+
+  .donate-button {
+    padding: 12px 24px;
+    font-size: 1.2em;
+  }
+}
+
+/* Media queries for desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .headline-section h1 {
+    font-size: 3em;
+  }
+
+  /* .theme-image {
+    height: 400px;
+  } */
+
+  .play-button {
+    font-size: 50px;
+    width: 80px;
+    height: 80px;
+  }
+
+  /* .video-player {
+    height: 400px;
+  } */
+
+  .donate-button {
+    padding: 14px 28px;
+    font-size: 1.3em;
+  }
+}

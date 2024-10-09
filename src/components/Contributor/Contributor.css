@@ -1,0 +1,125 @@
+.contributor-container {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Darker text for better readability */
+}
+
+.dropdown-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dropdown label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.dropdown select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white; /* White background for dropdowns */
+}
+
+.contributor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px; /* Space between cards */
+  width: 100%;
+}
+.contributor-item {
+  transition: transform 0.3s;
+  position: relative; /* Make this relative for absolute positioning of child */
+}
+
+.contributor-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.contribution-count {
+  position: absolute; /* Position it absolutely */
+  top: 0px; /* Adjust this value to move it vertically */
+  right: 10px; /* Adjust this value to move it horizontally */
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-end;
+  color: #007bff; /* Icon color */
+  font-weight: bold;
+}
+
+h3 {
+  color: #007bff; /* Primary color for contributor names */
+}
+
+.amount {
+  font-weight: bold;
+  color: #333; /* Darker color for the amount */
+}
+
+.thoughts {
+  color: #666; /* Gray for the contributor's thoughts */
+  margin: 10px 0;
+}
+
+.date-contributed {
+  font-size: 0.9em;
+  color: #999; /* Lighter color for date */
+}
+
+.details-btn {
+  background-color: #007bff; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.show-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #28a745; /* Success color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.show-more-btn:hover {
+  background-color: #218838; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dropdown-container {
+    justify-content: space-between;
+  }
+  .dropdown {
+    flex-direction: column; /* Stack dropdowns on smaller screens */
+    align-items: flex-start;
+  }
+
+  .dropdown select {
+    width: 100%; /* Full width on mobile */
+    margin-bottom: 10px;
+  }
+}

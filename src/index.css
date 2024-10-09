@@ -1,0 +1,28 @@
+/* Resets */
+
+html {
+  scroll-padding-top: 120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Chrome, Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  font-family: inherit;
+  color: inherit;
+  text-rendering: optimizeLegibility; /* Improve text rendering */
+  -webkit-font-smoothing: antialiased; /* Improve font smoothing on macOS and iOS */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow: auto;
+  font-family: Arial, sans-serif; /* Use a clean, modern font */
+  background-color: #ffffff; /* A neutral background */
+}

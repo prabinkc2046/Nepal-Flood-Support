@@ -1,0 +1,21 @@
+.qna-container {
+  width: 100%;
+}
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: #f0f0f0;
+}
+
+.faq-item h4 {
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+}

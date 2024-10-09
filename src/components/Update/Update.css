@@ -1,0 +1,62 @@
+.update-container {
+  width: 100%;
+}
+
+.fund-description {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+  text-align: justify; /* Make the text more readable */
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 30px;
+  margin: 20px 0;
+  position: relative;
+  align-self: stretch;
+  overflow: visible; /* Ensure tooltip is not clipped */
+}
+
+.progress {
+  height: 100%;
+  border-radius: 5px;
+  position: relative;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.latest-news {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.news-item {
+}
+
+.news-item h4 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.news-item span {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.tooltip {
+  position: absolute;
+  top: -35px;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  white-space: nowrap;
+}

@@ -1,0 +1,99 @@
+.navbar {
+  background-color: #333;
+  height: 90px; /* Adjust height for larger logo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.navbar-logo {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  justify-content: flex-start; /* Align logo to the left */
+}
+
+.logo {
+  width: 80px; /* Adjusted logo size for better visibility */
+  height: 80px; /* Maintain aspect ratio */
+  overflow: hidden; /* Hide overflow */
+  margin-right: 10px; /* Space between logo and text */
+  border-radius: 5px;
+}
+
+.menu-icon {
+  display: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Menu items */
+.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  width: 80%;
+}
+
+.nav-item {
+  margin: 0 15px;
+}
+
+.nav-links {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-links:hover {
+  color: #ff6347;
+}
+
+/* Mobile and tablet styles */
+@media screen and (max-width: 1100px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 90px; /* Adjust to match new navbar height */
+    right: -100%;
+    width: 50%; /* Adjust this to control the width of the menu when opened */
+    height: calc(100vh - 90px); /* Ensure it does not cover the navbar */
+    background-color: #333;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-item {
+    margin: 20px 0;
+  }
+
+  .nav-links {
+    font-size: 1.8rem;
+  }
+}

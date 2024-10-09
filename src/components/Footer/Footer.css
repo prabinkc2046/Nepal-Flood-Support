@@ -1,0 +1,80 @@
+.footer {
+  background-color: #333; /* Match navbar background color */
+  color: #fff; /* White text color like the navbar */
+  width: 100%;
+  margin: 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px; /* Set max-width for content consistency */
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5rem; /* Increased font-size to match navbar */
+  font-weight: 700;
+  text-align: center;
+}
+
+.footer-logo p {
+  color: #fff; /* Ensure logo text matches the navbar color */
+}
+
+.footer-logo .logo {
+  width: 150px; /* Adjusted logo size for footer */
+  height: 150px;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Add margin for better spacing */
+}
+
+.footer-links {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-link {
+  color: #fff; /* Footer link color to match navbar */
+  text-decoration: none;
+  font-size: 1.2rem; /* Consistent font-size with navbar links */
+  width: 100px;
+}
+
+.footer-link:hover {
+  color: #ff6347; /* Same hover effect as the navbar links */
+}
+
+.footer-image {
+  width: 100%;
+}
+
+.footer-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover; /* Make sure the image covers the area properly */
+}
+
+.footer-bottom,
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 0.9rem; /* Keep footer bottom font size slightly smaller */
+  color: #ccc; /* Lighter text for the bottom part */
+}
