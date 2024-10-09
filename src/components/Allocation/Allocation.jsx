@@ -5,23 +5,23 @@ import {
   faShoppingCart,
   faClipboardCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import './Allocation.css'; // Custom CSS for styling
+import './Allocation.css'; // Custom CSS
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-// Register the required components
+// Register required Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Allocation = () => {
   const [isChartVisible, setIsChartVisible] = useState(false);
   const pieChartRef = useRef(null);
 
-  const data = {
+  const pieData = {
     labels: [
       'Rice (32.96%)',
       'Lentils (48.38%)',
       'Cooking Oil (9.16%)',
       'Water (5.86%)',
-      'Salt, Spices, etc. (3.67%)',
+      'Salt & Spices (3.67%)',
     ],
     datasets: [
       {
@@ -44,114 +44,105 @@ const Allocation = () => {
     ],
   };
 
-  // Options for chart animation
-  const options = {
-    animation: {
-      duration: isChartVisible ? 1000 : 0, // Only animate when the chart is visible
-    },
+  const pieOptions = {
+    animation: { duration: isChartVisible ? 1000 : 0 }, // Animate only when visible
   };
-
-  // Intersection Observer to detect when the chart enters the viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsChartVisible(true); // Trigger animation when visible
-        }
-      },
-      {
-        root: null, // viewport
-        threshold: 0.1, // trigger when 10% of the chart is visible
-      }
-    );
-
-    if (pieChartRef.current) {
-      observer.observe(pieChartRef.current);
-    }
-
-    // Cleanup observer on component unmount
-    return () => {
-      if (pieChartRef.current) {
-        observer.unobserve(pieChartRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div id="allocation" className="donation-container">
       <div className="breakdown card">
         <h2>
-          <FontAwesomeIcon icon={faShoppingCart} /> Breakdown of Funds
+          <span className="icon">🛠️</span> Breakdown of Funds
         </h2>
         <p>
-          Our goal is to provide essential food supplies to families affected by
-          the recent disaster. Here’s how your donations will be allocated:
+          We provide essential food supplies to families affected by the
+          disaster. Here’s how donations are allocated:
         </p>
-        <div className="card-container">
-          <div className="fund-card">
-            🌾
-            <h3>Rice</h3>
-            <p>32.96% for rice to provide nourishment.</p>
-          </div>
-          <div className="fund-card">
-            🫘
-            <h3>Lentils</h3>
-            <p>48.38% for lentils to ensure protein intake.</p>
-          </div>
-          <div className="fund-card">
-            🍶
-            <h3>Cooking Oil</h3>
-            <p>9.16% for cooking oil for healthy meals.</p>
-          </div>
-          <div className="fund-card">
-            💧
-            <h3>Water</h3>
-            <p>5.86% for water, essential for survival.</p>
-          </div>
-          <div className="fund-card">
-            🧂🧅🧄
-            <h3>Salt, Spices, etc.</h3>
-            <p>3.67% for salt and spices to enhance flavors.</p>
-          </div>
+
+        <div ref={pieChartRef} className="pie-chart card">
+          <h2>Fund Allocation</h2>
+          <Pie data={pieData} options={pieOptions} />
         </div>
 
-        <div ref={pieChartRef} className="pie-chart">
-          <h2>Fund Allocation</h2>
-          <Pie data={data} options={options} />
+        <div className="card-container">
+          {[
+            {
+              icon: '🌾',
+              label: 'Rice',
+              percentage: '32.96%',
+              desc: 'For providing nourishment.',
+            },
+            {
+              icon: '🫘',
+              label: 'Lentils',
+              percentage: '48.38%',
+              desc: 'To ensure protein intake.',
+            },
+            {
+              icon: '🍶',
+              label: 'Cooking Oil',
+              percentage: '9.16%',
+              desc: 'For healthy meals.',
+            },
+            {
+              icon: '💧',
+              label: 'Water',
+              percentage: '5.86%',
+              desc: 'Essential for survival.',
+            },
+            {
+              icon: '🧂🧅🧄',
+              label: 'Salt & Spices',
+              percentage: '3.67%',
+              desc: 'To enhance flavor.',
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="fund-card">
+              <span className="allocation-item-icon"> {item.icon}</span>
+              <h3>{item.label}</h3>
+              <p>
+                {item.percentage} {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
       <div className="transparency card">
         <h2>
-          <FontAwesomeIcon icon={faClipboardCheck} /> Transparency
+          <span className="icon">✅</span> Transparency
         </h2>
-        <p>
-          We promise to provide regular updates on how funds are being used.
-          This includes:
-        </p>
+        <p>We commit to regular updates on fund usage, including:</p>
+
         <div className="card-container">
-          <div className="transparency-card">
-            🧾
-            <h3>Receipts</h3>
-            <p>
-              Publishing receipts for all purchases made with donation funds.
-            </p>
-          </div>
-          <div className="transparency-card">
-            📽️
-            <h3>Stories</h3>
-            <p>Sharing the names and stories of families receiving aid.</p>
-          </div>
-          <div className="transparency-card">
-            📈
-            <h3>Live Tracker</h3>
-            <p>Creating a live tracker to show fund allocation and expenses.</p>
-          </div>
+          {[
+            {
+              icon: '🧾',
+              label: 'Receipts',
+              desc: 'Publishing receipts for all purchases made with donations.',
+            },
+            {
+              icon: '📽️',
+              label: 'Stories',
+              desc: 'Sharing the names and stories of families receiving aid.',
+            },
+            {
+              icon: '📈',
+              label: 'Live Tracker',
+              desc: 'Tracking fund allocation and expenses in real-time.',
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="transparency-card">
+              <span className="transparency-item-icon">{item.icon}</span>
+              <h3>{item.label}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
         </div>
+
         <p>
-          Our aim is to maintain full transparency and ensure that every dollar
-          is used effectively to help those in need.
+          Our goal is full transparency, ensuring every dollar is effectively
+          used to help those in need.
         </p>
       </div>
     </div>

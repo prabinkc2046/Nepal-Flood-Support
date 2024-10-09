@@ -1,5 +1,17 @@
 .contact-container {
   width: 100%;
+  padding: 20px;
+}
+
+.contact-container h2 {
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.contact-container p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
 }
 
 .contact {
@@ -7,12 +19,12 @@
   display: flex;
   flex-direction: column;
 }
+
 .contact-details {
   margin-bottom: 20px;
-  /* border: 1px solid green; */
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 15px;
 }
 
 .contact-item {
@@ -20,45 +32,51 @@
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s;
-  width: 100%;
   display: flex;
-  justify-content: stretch;
+  justify-content: flex-start;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  font-size: 1.1em; /* Keep typography readable */
+  font-weight: 500;
 }
 
 .contact-item:hover {
-  background-color: #e0e0e0; /* Light grey on hover */
+  background-color: #f0f0f0; /* Light grey on hover */
 }
 
 .contact-item svg {
   margin-right: 10px; /* Spacing between icon and text */
 }
 
+.contact-form-container h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  gap: 10px;
 }
 
 .contact-form input,
 .contact-form textarea {
-  margin: 10px 0;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1.1em;
+  font-family: inherit;
+  font-weight: 400;
 }
 
 .contact-form button {
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   background-color: #4caf50; /* Green */
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.2em;
   transition: background-color 0.3s;
 }
 
@@ -67,25 +85,17 @@
 }
 
 @media (min-width: 1100px) {
-  .contact-container h2 {
-    width: 100%;
+  .contact {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
   }
 
-  .contact {
-    height: 300px;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 10px;
-  }
   .contact-details {
-    width: 40%;
-    height: 100%;
+    width: 45%;
   }
+
   .contact-form-container {
-    width: 60%;
-    height: 100%;
-  }
-  .contact-form {
-    justify-content: space-around;
+    width: 50%;
   }
 }

@@ -12,20 +12,15 @@ const HomePage = () => {
     <div id="home" className="homepage-container card">
       {/* Headline Section */}
       <header className="headline-section">
-        <h1>Donate to Support Flood Relief Efforts</h1>
+        <h1>Support Flood Relief Efforts</h1>
         <p>
-          Nepal has been hit by devastating floods caused by record-breaking
-          rainfall, with over 200 people killed and thousands displaced.
-          Working-class riverside communities are the hardest hit, suffering
-          severe damage to their homes and livelihoods. The disaster has been
-          worsened by poor urban planning and the effects of climate change. You
-          can help by donating to provide critical resources for rescue
-          operations, infrastructure rebuilding, and support for affected
-          families.
+          Nepal has faced devastating floods, causing significant damage and
+          displacement. Your donation can help provide critical resources for
+          rescue operations and support affected families.
         </p>
         <div className="info-credit">
           <p>
-            source:{' '}
+            Source:{' '}
             <a
               href="https://www.aljazeera.com/"
               target="_blank"
@@ -41,13 +36,11 @@ const HomePage = () => {
       <div className="video-section">
         {!isVideoPlaying ? (
           <div className="video-thumbnail">
-            {/* Theme image before video plays */}
             <img
               src={`${process.env.PUBLIC_URL}/assets/flood-banner.png`}
               alt="Flood in Nepal"
               className="theme-image"
             />
-            {/* Play button overlay */}
             <button onClick={handlePlayVideo} className="play-button">
               ▶
             </button>
@@ -55,8 +48,6 @@ const HomePage = () => {
         ) : (
           <iframe
             className="video-player"
-            width="100%"
-            height="100%"
             src="https://www.youtube.com/embed/8oQSECt3LZc?autoplay=1"
             title="Nepal Flood Crisis"
             frameBorder="0"
@@ -64,10 +55,9 @@ const HomePage = () => {
             allowFullScreen
           ></iframe>
         )}
-        {/* Credit the source of the video */}
         <div className="video-credit">
           <p>
-            source:{' '}
+            Source:{' '}
             <a
               href="https://www.aljazeera.com/"
               target="_blank"

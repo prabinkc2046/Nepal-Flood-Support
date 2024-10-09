@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Contributor.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrophy, faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faTrophy } from '@fortawesome/free-solid-svg-icons'; // Removed faMedal import
 import {
   contributorsList,
   wordsToShow,
@@ -121,26 +121,7 @@ const Contributor = () => {
       <div className="contributor-grid">
         {visibleContributors.map((contributor, index) => (
           <div key={index} className="contributor-item fund-card">
-            <h3>
-              {contributor.name}
-              <div className="contribution-count">
-                {contributor.contributionsCount === 1 ? (
-                  // Single icon for 1 contribution
-                  // <FontAwesomeIcon icon={faTrophy} />
-                  <>🏆</>
-                ) : (
-                  // Render multiple icons based on contributionsCount
-                  Array.from({ length: contributor.contributionsCount }).map(
-                    (_, i) => (
-                      <>
-                        {/* <FontAwesomeIcon key={i} icon={faMedal} /> */}
-                        🥇
-                      </>
-                    )
-                  )
-                )}
-              </div>
-            </h3>
+            <h3>{contributor.name}</h3>
             <p className="amount">Contribution: ${contributor.amount}</p>
             <p className="thoughts">
               {contributor.thoughts

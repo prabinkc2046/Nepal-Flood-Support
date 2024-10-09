@@ -1,102 +1,133 @@
+/* General Container */
 .contributor-container {
   width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px; /* Rounded container */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-bottom: 40px;
 }
 
-h2 {
+/* Section Heading */
+.contributor-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333; /* Darker text for better readability */
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 2.2em; /* Increased for visual consistency */
 }
 
+/* Dropdown Container */
 .dropdown-container {
-  width: 100%;
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
 }
+
 .dropdown {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .dropdown label {
   margin-right: 10px;
   font-weight: bold;
+  font-size: 1em;
 }
 
 .dropdown select {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  background-color: white; /* White background for dropdowns */
+  background-color: white;
+  font-size: 1em;
 }
 
+/* Grid for Contributor Cards */
 .contributor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px; /* Space between cards */
+  gap: 20px;
   width: 100%;
 }
+
+/* Contributor Item (Card) */
 .contributor-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
-  position: relative; /* Make this relative for absolute positioning of child */
+  position: relative;
 }
 
 .contributor-item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
+  transform: translateY(-5px);
+}
+
+/* Contributor Name and Icon Count */
+.contributor-item h3 {
+  color: #007bff;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .contribution-count {
-  position: absolute; /* Position it absolutely */
-  top: 0px; /* Adjust this value to move it vertically */
-  right: 10px; /* Adjust this value to move it horizontally */
+  position: absolute;
+  top: 0px;
+  right: 10px;
   display: flex;
-  width: 90%;
   align-items: center;
   justify-content: flex-end;
-  color: #007bff; /* Icon color */
-  font-weight: bold;
+  color: #ffc107; /* Gold for trophies/medals */
+  font-size: 1.2em;
 }
 
-h3 {
-  color: #007bff; /* Primary color for contributor names */
-}
-
+/* Contribution Amount */
 .amount {
   font-weight: bold;
-  color: #333; /* Darker color for the amount */
+  color: #333;
+  margin-bottom: 10px;
 }
 
+/* Contributor Thoughts */
 .thoughts {
-  color: #666; /* Gray for the contributor's thoughts */
+  color: #666;
   margin: 10px 0;
+  font-size: 1em;
+  line-height: 1.5;
 }
 
+/* Date of Contribution */
 .date-contributed {
   font-size: 0.9em;
-  color: #999; /* Lighter color for date */
+  color: #999;
+  margin-bottom: 10px;
 }
 
+/* View Details Button */
 .details-btn {
-  background-color: #007bff; /* Button color */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   padding: 10px;
+  font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .details-btn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
 }
 
+/* Show More Button */
 .show-more-btn {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  background-color: #28a745; /* Success color */
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 4px;
@@ -105,21 +136,30 @@ h3 {
 }
 
 .show-more-btn:hover {
-  background-color: #218838; /* Darker shade on hover */
+  background-color: #218838;
 }
 
-/* Responsive Design */
+/* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
   .dropdown-container {
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
   }
+
   .dropdown {
-    flex-direction: column; /* Stack dropdowns on smaller screens */
-    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .dropdown select {
-    width: 100%; /* Full width on mobile */
-    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .contributor-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+
+  .contributor-item {
+    width: 100%;
   }
 }

@@ -60,10 +60,12 @@
   color: #fff;
   text-decoration: none;
   font-size: 1.2rem;
+  transition: color 0.3s, transform 0.3s; /* Smooth transitions */
 }
 
 .nav-links:hover {
-  color: #ff6347;
+  color: #ff6347; /* Water-like color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 /* Mobile and tablet styles */
@@ -76,13 +78,16 @@
     position: fixed;
     top: 90px; /* Adjust to match new navbar height */
     right: -100%;
-    width: 50%; /* Adjust this to control the width of the menu when opened */
-    height: calc(100vh - 90px); /* Ensure it does not cover the navbar */
+    width: 60%; /* Adjust this to control the width of the menu when opened */
+    max-height: calc(100vh - 90px); /* Ensure it does not cover the navbar */
     background-color: #333;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Align items to the top */
     align-items: center;
-    transition: 0.5s ease;
+    transition: right 0.5s ease; /* Smooth menu transition */
+    overflow-y: auto; /* Allow vertical scrolling */
+    padding: 20px; /* Add some padding */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth */
   }
 
   .nav-menu.active {

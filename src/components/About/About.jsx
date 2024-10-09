@@ -3,7 +3,7 @@ import './About.css'; // Custom CSS for styling
 
 const About = () => {
   return (
-    <div id="about" className="about-section">
+    <div id="about" className="about-section card">
       <div className="about-container">
         {/* About the Cause Card */}
         <div className="card">

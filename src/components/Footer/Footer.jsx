@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'; // Import the CSS
+import './Footer.css';
 
 function Footer() {
   return (
@@ -7,7 +7,11 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-logo">
-            <img src="/assets/logo.png" alt="Logo" className="logo" />
+            <img
+              src="/assets/logo.png"
+              alt="HopeForNepal Logo"
+              className="logo"
+            />
             <p>HopeForNepal - Helping flood victims rebuild their lives.</p>
           </div>
           <div className="footer-links">

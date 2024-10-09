@@ -1,21 +1,53 @@
 .qna-container {
   width: 100%;
+  padding: 20px;
+}
+
+.qna-container h2 {
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .faq-list {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .faq-item {
-  transition: background-color 0.3s ease;
-}
-
-.faq-item:hover {
-  background-color: #f0f0f0;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1.1em; /* Maintain readable typography */
 }
 
 .faq-item h4 {
   margin: 0;
-  font-size: 1.1em;
   color: #333;
+  font-weight: 500;
+}
+
+.faq-item p {
+  margin-top: 10px;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #666;
+}
+
+.faq-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item.expanded h4 {
+  color: #333; /* Green color for the expanded state */
+  font-weight: bold;
+}
+
+.faq-item.expanded {
+  background-color: #fff; /* Slightly green background when expanded */
 }

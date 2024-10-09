@@ -10,6 +10,7 @@ import './Contact.css';
 const Contact = () => {
   const [messageStatus, setMessageStatus] = useState('');
   const contactFormRef = useRef();
+
   const handleEmailClick = () => {
     window.location.href = `mailto:${email}`;
   };
@@ -81,7 +82,6 @@ const Contact = () => {
             />
             <textarea name="message" placeholder="Your Message" required />
             <button type="submit">
-              {' '}
               {messageStatus ? <span>{messageStatus}</span> : 'Send Message'}
             </button>
           </form>

@@ -39,7 +39,7 @@ function NavBar() {
         {/* Logo */}
         <a href="#home" className="navbar-logo">
           <img src="/assets/logo.png" alt="Logo" className="logo" />
-          HopeForNepal{' '}
+          HopeForNepal
         </a>
 
         {/* Hamburger icon for mobile/tablet */}
@@ -49,52 +49,23 @@ function NavBar() {
 
         {/* Menu links */}
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <li className="nav-item">
-            <a href="#home" className="nav-links" onClick={toggleMenu}>
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#about" className="nav-links" onClick={toggleMenu}>
-              Cause
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#allocation" className="nav-links" onClick={toggleMenu}>
-              Allocation
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#give" className="nav-links" onClick={toggleMenu}>
-              Give
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#get-involved" className="nav-links" onClick={toggleMenu}>
-              Get Involved
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#contributor" className="nav-links" onClick={toggleMenu}>
-              Contributor
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#update" className="nav-links" onClick={toggleMenu}>
-              Update
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a href="#faqs" className="nav-links" onClick={toggleMenu}>
-              FAQs
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#contact" className="nav-links" onClick={toggleMenu}>
-              Contact
-            </a>
-          </li>
+          {[
+            'home',
+            'about',
+            'allocation',
+            'give',
+            'get-involved',
+            'contributor',
+            'update',
+            'faqs',
+            'contact',
+          ].map((item, index) => (
+            <li className="nav-item" key={index}>
+              <a href={`#${item}`} className="nav-links" onClick={toggleMenu}>
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

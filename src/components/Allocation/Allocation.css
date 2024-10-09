@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-/* Responsive card container */
+/* Responsive Card Layout */
 .breakdown,
 .transparency {
   margin-top: 20px;
@@ -12,9 +12,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
+/* Styling for Fund and Transparency Cards */
 .fund-card,
 .transparency-card {
   background: #f9f9f9;
@@ -22,38 +23,67 @@
   border-radius: 8px;
   padding: 15px;
   margin: 10px;
-  flex: 1 1 calc(45% - 20px); /* Two cards per row on larger screens */
+  flex: 1 1 calc(45% - 20px); /* 2 cards per row on larger screens */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Make icons more prominent */
+.transparency-item-icon,
+.allocation-item-icon,
+.icon {
+  font-size: 50px; /* Same icon size */
+  color: #007bff; /* Icon color */
+  margin-bottom: 15px;
+}
+
+.fund-card:hover,
+.transparency-card:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings similar to About Section */
 .fund-card h3,
 .transparency-card h3 {
-  margin: 10px 0;
+  font-size: 2em; /* Same as in the About section */
+  margin: 15px 0; /* Vertical margin for headings */
+  color: #333;
 }
 
-/* Chart responsiveness */
+/* Paragraphs similar to About Section */
+.fund-card p,
+.transparency-card p {
+  font-size: 1.1em; /* Same font size */
+  line-height: 1.6; /* Same line height */
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Chart Responsiveness */
 .pie-chart {
   margin-top: 30px;
   width: 100%;
-  max-width: 600px; /* Sets max width for larger screens */
+  max-width: 600px; /* Max width for larger screens */
   height: auto;
 }
 
-/* Responsive Design for Cards */
+/* Responsive Layout Adjustments */
 @media (max-width: 600px) {
   .fund-card,
   .transparency-card {
-    flex: 1 1 100%; /* Full width on smaller screens */
+    flex: 1 1 100%; /* Full width on small screens */
   }
 }
 
 @media (min-width: 768px) {
   .pie-chart {
-    width: 80%; /* Slightly smaller chart on larger screens */
-    max-width: 500px; /* Max width limit to avoid overly large charts */
+    width: 80%;
+    max-width: 500px;
+    height: fit-content;
     margin: 0 auto; /* Center the chart */
   }
 }
