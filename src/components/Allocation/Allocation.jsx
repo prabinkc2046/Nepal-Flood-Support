@@ -1,19 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faShoppingCart,
-  faClipboardCheck,
-} from '@fortawesome/free-solid-svg-icons';
-import './Allocation.css'; // Custom CSS
+import './Allocation.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-// Register required Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Allocation = () => {
   const [isChartVisible, setIsChartVisible] = useState(false);
-  const pieChartRef = useRef(null);
 
   const pieData = {
     labels: [
@@ -44,27 +37,36 @@ const Allocation = () => {
     ],
   };
 
-  const pieOptions = {
-    animation: { duration: isChartVisible ? 1000 : 0 }, // Animate only when visible
-  };
-
   return (
-    <div id="allocation" className="donation-container">
-      <div className="breakdown card">
+    <div className="card section">
+      <div className="allocation-header">
         <h2>
-          <span className="icon">🛠️</span> Breakdown of Funds
+          {' '}
+          <span className="card-logo">🛠️</span> Breakdown of Funds
         </h2>
         <p>
           We provide essential food supplies to families affected by the
           disaster. Here’s how donations are allocated:
         </p>
+      </div>
 
-        <div ref={pieChartRef} className="pie-chart card">
-          <h2>Fund Allocation</h2>
-          <Pie data={pieData} options={pieOptions} />
+      <div className="allocation-content">
+        {/* Pie Chart Section */}
+        <div className={`pie-chart-section ${isChartVisible ? 'visible' : ''}`}>
+          <button
+            className="toggle-chart-btn"
+            onClick={() => setIsChartVisible(!isChartVisible)}
+          >
+            {isChartVisible ? 'Hide Allocation Chart' : 'See Allocation Chart'}
+          </button>
+          <div className={`pie-chart ${isChartVisible ? 'show' : ''}`}>
+            <h3>Fund Allocation</h3>
+            <Pie data={pieData} />
+          </div>
         </div>
 
-        <div className="card-container">
+        {/* Fund Details Section */}
+        <div className="fund-details">
           {[
             {
               icon: '🌾',
@@ -91,59 +93,20 @@ const Allocation = () => {
               desc: 'Essential for survival.',
             },
             {
-              icon: '🧂🧅🧄',
+              icon: '🧂🧄',
               label: 'Salt & Spices',
               percentage: '3.67%',
               desc: 'To enhance flavor.',
             },
           ].map((item, idx) => (
             <div key={idx} className="fund-card">
-              <span className="allocation-item-icon"> {item.icon}</span>
+              <span className="card-logo">{item.icon}</span>
               <h3>{item.label}</h3>
-              <p>
-                {item.percentage} {item.desc}
-              </p>
+              <p>{item.percentage}</p>
+              <p className="fund-desc">{item.desc}</p>
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="transparency card">
-        <h2>
-          <span className="icon">✅</span> Transparency
-        </h2>
-        <p>We commit to regular updates on fund usage, including:</p>
-
-        <div className="card-container">
-          {[
-            {
-              icon: '🧾',
-              label: 'Receipts',
-              desc: 'Publishing receipts for all purchases made with donations.',
-            },
-            {
-              icon: '📽️',
-              label: 'Stories',
-              desc: 'Sharing the names and stories of families receiving aid.',
-            },
-            {
-              icon: '📈',
-              label: 'Live Tracker',
-              desc: 'Tracking fund allocation and expenses in real-time.',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="transparency-card">
-              <span className="transparency-item-icon">{item.icon}</span>
-              <h3>{item.label}</h3>
-              <p>{item.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <p>
-          Our goal is full transparency, ensuring every dollar is effectively
-          used to help those in need.
-        </p>
       </div>
     </div>
   );

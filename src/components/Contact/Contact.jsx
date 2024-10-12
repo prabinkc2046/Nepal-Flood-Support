@@ -3,24 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import emailjs from '@emailjs/browser';
-
-import { email, phone, linkedin } from '../../Constants/contact';
+import { contacts } from '../../Constants/contact';
 import './Contact.css';
 
 const Contact = () => {
   const [messageStatus, setMessageStatus] = useState('');
   const contactFormRef = useRef();
+  const { personalContact } = contacts;
 
   const handleEmailClick = () => {
-    window.location.href = `mailto:${email}`;
+    window.location.href = `mailto:${personalContact.email}`;
   };
 
   const handlePhoneClick = () => {
-    window.location.href = `tel:${phone}`;
+    window.location.href = `tel:${personalContact.phone}`;
   };
 
   const handleLinkedInClick = () => {
-    window.open(linkedin, '_blank');
+    window.open(personalContact.linkedin, '_blank');
   };
 
   const sendEmail = e => {
@@ -46,16 +46,16 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="card contact-container">
+    <div id="contact" className="card section">
       <h2>Contact Us</h2>
       <p>Your support can make a difference for flood victims in Nepal.</p>
       <div className="contact">
         <div className="contact-details card">
           <div className="contact-item" onClick={handleEmailClick}>
-            <FontAwesomeIcon icon={faEnvelope} /> {email}
+            <FontAwesomeIcon icon={faEnvelope} /> {personalContact.email}
           </div>
           <div className="contact-item" onClick={handlePhoneClick}>
-            <FontAwesomeIcon icon={faPhone} /> {phone}
+            <FontAwesomeIcon icon={faPhone} /> {personalContact.phone}
           </div>
           <div className="contact-item" onClick={handleLinkedInClick}>
             <FontAwesomeIcon icon={faLinkedinIn} /> LinkedIn

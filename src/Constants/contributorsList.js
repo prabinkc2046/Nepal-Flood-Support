@@ -1,6 +1,7 @@
 export const contributorsList = [
   {
-    name: 'John Doe',
+    first_name: 'John',
+    last_name: 'Doe',
     amount: 100,
     thoughts:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam delectus tenetur quasi in blanditiis at, debitis architecto dicta velit! Sequi laborum eum, quibusdam iste, quos incidunt corrupti voluptas cupiditate a pariatur doloremque perferendis accusantium ipsum delectus illo nobis facere eaque, corporis eveniet voluptate tenetur impedit laboriosam minus doloribus. Aspernatur, nihil?',

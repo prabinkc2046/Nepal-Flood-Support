@@ -1,165 +1,80 @@
-/* General Container */
-.contributor-container {
-  width: 100%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px; /* Rounded container */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  margin-bottom: 40px;
-}
-
-/* Section Heading */
-.contributor-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 2.2em; /* Increased for visual consistency */
-}
-
-/* Dropdown Container */
-.dropdown-container {
+/* Custom Navbar for sorting */
+.contributor-navbar {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.dropdown {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown label {
-  margin-right: 10px;
-  font-weight: bold;
-  font-size: 1em;
-}
-
-.dropdown select {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-size: 1em;
-}
-
-/* Grid for Contributor Cards */
-.contributor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  width: 100%;
-}
-
-/* Contributor Item (Card) */
-.contributor-item {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
   position: relative;
+  top: 0;
 }
 
-.contributor-item:hover {
-  transform: translateY(-5px);
-}
-
-/* Contributor Name and Icon Count */
-.contributor-item h3 {
-  color: #007bff;
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.contribution-count {
-  position: absolute;
-  top: 0px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: #ffc107; /* Gold for trophies/medals */
-  font-size: 1.2em;
-}
-
-/* Contribution Amount */
-.amount {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-/* Contributor Thoughts */
-.thoughts {
-  color: #666;
-  margin: 10px 0;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-/* Date of Contribution */
-.date-contributed {
-  font-size: 0.9em;
-  color: #999;
-  margin-bottom: 10px;
-}
-
-/* View Details Button */
-.details-btn {
+.contrib-nav-btn {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 1em;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.details-btn:hover {
+.contrib-nav-btn:hover {
   background-color: #0056b3;
 }
 
-/* Show More Button */
-.show-more-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.contrib-nav-btn.active {
+  background-color: #0056b3;
 }
 
-.show-more-btn:hover {
-  background-color: #218838;
+/* Hide Scroll Bar */
+.contributor-grid-horizontal {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
-  .dropdown-container {
-    flex-direction: column;
-    gap: 15px;
+.contributor-grid-horizontal.no-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.contributor-grid-horizontal.no-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Card Style */
+.contributor-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  min-width: 200px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contributor-item h3 {
+  color: #007bff;
+}
+
+/* Mobile-first styling */
+@media (min-width: 768px) {
+  .contributor-navbar {
+    justify-content: space-evenly;
   }
 
-  .dropdown {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .dropdown select {
-    width: 100%;
-  }
-
-  .contributor-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  .contributor-grid-horizontal {
+    flex-wrap: nowrap;
   }
 
   .contributor-item {
-    width: 100%;
+    min-width: 300px;
+    padding: 20px;
   }
 }

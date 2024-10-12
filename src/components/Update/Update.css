@@ -1,11 +1,7 @@
-.update-container {
-  width: 100%;
-}
-
 .fund-description {
   font-size: 1.2em;
   margin-bottom: 25px;
-  text-align: justify; /* Make the text more readable */
+  text-align: justify;
 }
 
 .progress-bar {
@@ -15,7 +11,7 @@
   margin: 20px 0;
   position: relative;
   align-self: stretch;
-  overflow: visible; /* Ensure tooltip is not clipped */
+  overflow: visible;
 }
 
 .progress {
@@ -34,18 +30,46 @@
 .latest-news {
   margin-top: 20px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .news-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-.news-item h4 {
+.news-header {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.news-header h4 {
   margin: 0;
-  font-size: 1.2em;
 }
 
-.news-item span {
+.toggle-icon {
+  font-size: 2rem;
+  user-select: none;
+  color: #e74c3c;
+}
+
+.news-content {
+  padding-top: 10px;
+  transition: max-height 0.5s ease;
+}
+
+.news-content p {
+  margin: 0 0 10px;
+}
+
+.news-content span {
   font-size: 0.9em;
   color: #888;
 }
@@ -59,4 +83,11 @@
   border-radius: 5px;
   font-size: 0.9em;
   white-space: nowrap;
+}
+
+@media (min-width: 676px) {
+  .news-header {
+    flex-direction: row;
+    align-items: center;
+  }
 }

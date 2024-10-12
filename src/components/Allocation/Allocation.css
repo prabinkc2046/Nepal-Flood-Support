@@ -1,89 +1,102 @@
-.donation-container {
-  width: 100%;
-}
-
-/* Responsive Card Layout */
-.breakdown,
-.transparency {
-  margin-top: 20px;
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-/* Styling for Fund and Transparency Cards */
-.fund-card,
-.transparency-card {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px;
-  flex: 1 1 calc(45% - 20px); /* 2 cards per row on larger screens */
+/* Header */
+.allocation-header {
+  text-align: center;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Allocation Content */
+.allocation-content {
+  display: flex;
+  flex-direction: column; /* Column for mobile */
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Pie Chart Section */
+.pie-chart-section {
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1;
 }
 
-/* Make icons more prominent */
-.transparency-item-icon,
-.allocation-item-icon,
-.icon {
-  font-size: 50px; /* Same icon size */
-  color: #007bff; /* Icon color */
-  margin-bottom: 15px;
+.pie-chart {
+  display: none; /* Hidden by default on mobile */
+  max-width: 100%; /* Full width on mobile */
+  margin: 2rem auto;
 }
 
-.fund-card:hover,
-.transparency-card:hover {
-  transform: translateY(-5px); /* Subtle hover effect */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.pie-chart.show {
+  display: block; /* Show chart when button is clicked */
 }
 
-/* Headings similar to About Section */
-.fund-card h3,
-.transparency-card h3 {
-  font-size: 2em; /* Same as in the About section */
-  margin: 15px 0; /* Vertical margin for headings */
+.toggle-chart-btn {
+  padding: 12px 20px;
+  background-color: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Full width for mobile button */
+}
+
+.toggle-chart-btn:hover {
+  background-color: #1f6d91;
+}
+
+/* Fund Details Section */
+.fund-details {
+  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fund-desc {
+  font-size: 0.95rem;
   color: #333;
 }
 
-/* Paragraphs similar to About Section */
-.fund-card p,
-.transparency-card p {
-  font-size: 1.1em; /* Same font size */
-  line-height: 1.6; /* Same line height */
-  color: #555;
-  margin-bottom: 15px;
-}
+/* Media Queries for Larger Screens (Tablets and Desktops) */
+@media (min-width: 768px) {
+  .allocation-container {
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
 
-/* Chart Responsiveness */
-.pie-chart {
-  margin-top: 30px;
-  width: 100%;
-  max-width: 600px; /* Max width for larger screens */
-  height: auto;
-}
+  .toggle-chart-btn {
+    width: auto; /* Adjust button width for larger screens */
+  }
 
-/* Responsive Layout Adjustments */
-@media (max-width: 600px) {
-  .fund-card,
-  .transparency-card {
-    flex: 1 1 100%; /* Full width on small screens */
+  .pie-chart {
+    max-width: 400px; /* Constrain pie chart size */
+  }
+
+  .fund-card {
+    max-width: 300px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .allocation-content {
+    flex-direction: row; /* Side-by-side on larger screens */
+    justify-content: space-between;
+  }
+
+  .toggle-chart-btn {
+    display: none; /* Hide toggle button on large screens */
+  }
+
   .pie-chart {
-    width: 80%;
-    max-width: 500px;
-    height: fit-content;
-    margin: 0 auto; /* Center the chart */
+    display: block; /* Always show pie chart on large screens */
+    margin: 0; /* Remove margin for side-by-side layout */
+  }
+
+  .fund-details {
+    width: 60%;
   }
 }

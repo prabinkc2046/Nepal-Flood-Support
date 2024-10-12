@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import './Contributor.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrophy } from '@fortawesome/free-solid-svg-icons'; // Removed faMedal import
-import {
-  contributorsList,
-  wordsToShow,
-} from '../../Constants/contributorsList';
+import { useQuery } from '@tanstack/react-query'; // Import useQuery from React Query
 import ContributorModal from '../Modal/ContributorModal/ContributorModal';
+
+// Function to fetch contributors from the API
+const fetchContributors = async () => {
+  const apiUrl = process.env.REACT_APP_API_URL; // Fetch the API URL from environment variables
+  const response = await fetch(`${apiUrl}/list_donors`); // Use the API URL
+  console.log(response.status);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+};
 
 const timeSince = date => {
   const now = new Date();
   const pastDate = new Date(date);
+
+  // Check if the pastDate is in the future
+  if (pastDate > now) {
+    return 'In the future'; // or any other appropriate message
+  }
+
   const secondsAgo = Math.floor((now - pastDate) / 1000);
 
   let interval = Math.floor(secondsAgo / 31536000);
@@ -32,11 +44,16 @@ const timeSince = date => {
 };
 
 const Contributor = () => {
-  const contributors = contributorsList;
   const [sortCriteria, setSortCriteria] = useState('default');
-  const [itemsToShow, setItemsToShow] = useState(5);
   const [selectedContributor, setSelectedContributor] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  // Use React Query to fetch contributors
+  const { data: contributors = [], refetch } = useQuery({
+    queryKey: ['contributors'], // Specify a unique key for the query
+    queryFn: fetchContributors, // Function to fetch data
+    refetchOnWindowFocus: true, // Refetch when the window is focused
+  });
 
   const sortContributors = criteria => {
     switch (criteria) {
@@ -59,19 +76,7 @@ const Contributor = () => {
     }
   };
 
-  const visibleContributors = sortContributors(sortCriteria).slice(
-    0,
-    itemsToShow
-  );
-
-  const handleShowMore = () => {
-    const nextItemsToShow = itemsToShow + itemsToShow;
-    if (nextItemsToShow >= contributors.length) {
-      setItemsToShow(contributors.length);
-    } else {
-      setItemsToShow(nextItemsToShow);
-    }
-  };
+  const sortedContributors = sortContributors(sortCriteria);
 
   const openModal = contributor => {
     setSelectedContributor(contributor);
@@ -84,50 +89,61 @@ const Contributor = () => {
   };
 
   return (
-    <div id="contributor" className="contributor-container card">
+    <div id="contributor" className="section">
+      <span className="card-logo">🤝</span>
       <h2>Contributors</h2>
 
-      <div className="dropdown-container">
-        <div className="dropdown">
-          <label htmlFor="sortContributors">Sort by: </label>
-          <select
-            id="sortContributors"
-            value={sortCriteria}
-            onChange={e => setSortCriteria(e.target.value)}
-          >
-            <option value="default">Default</option>
-            <option value="topContributor">Top Contributor</option>
-            <option value="mostFrequent">Most Frequent Contributor</option>
-            <option value="earliest">Earliest Contributor</option>
-            <option value="latest">Latest Contributor</option>
-          </select>
-        </div>
+      {/* Custom Navbar for Sorting */}
+      <div className="contributor-navbar">
+        <button
+          className={
+            sortCriteria === 'default'
+              ? 'contrib-nav-btn active'
+              : 'contrib-nav-btn'
+          }
+          onClick={() => setSortCriteria('default')}
+        >
+          Default
+        </button>
 
-        <div className="dropdown">
-          <label htmlFor="showContributors">Show: </label>
-          <select
-            id="showContributors"
-            value={itemsToShow}
-            onChange={e => setItemsToShow(parseInt(e.target.value, 10))}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={15}>15</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </select>
-        </div>
+        <button
+          className={
+            sortCriteria === 'earliest'
+              ? 'contrib-nav-btn active'
+              : 'contrib-nav-btn'
+          }
+          onClick={() => setSortCriteria('earliest')}
+        >
+          Earliest
+        </button>
+        <button
+          className={
+            sortCriteria === 'latest'
+              ? 'contrib-nav-btn active'
+              : 'contrib-nav-btn'
+          }
+          onClick={() => setSortCriteria('latest')}
+        >
+          Latest
+        </button>
       </div>
-      <div className="contributor-grid">
-        {visibleContributors.map((contributor, index) => (
-          <div key={index} className="contributor-item fund-card">
-            <h3>{contributor.name}</h3>
-            <p className="amount">Contribution: ${contributor.amount}</p>
+
+      {/* Contributor List */}
+      <div className="contributor-grid-horizontal no-scroll">
+        {sortedContributors.map((contributor, index) => (
+          <div key={index} className="contributor-item">
+            <h3>
+              {/* Display 'Anonymous' if publish_name is false */}
+              {contributor.publish_name
+                ? `${contributor.first_name} ${contributor.last_name}`
+                : 'Anonymous'}
+            </h3>
+            <p className="amount">💲{contributor.amount}</p>
             <p className="thoughts">
               {contributor.thoughts
                 .trim()
                 .split(/\s+/)
-                .slice(0, wordsToShow)
+                .slice(0, 4) // Assuming you want to show first 4 words
                 .join(' ') + '...'}
             </p>
             <p className="date-contributed">{timeSince(contributor.date)}</p>
@@ -141,18 +157,12 @@ const Contributor = () => {
         ))}
       </div>
 
-      {itemsToShow < contributors.length && (
-        <button onClick={handleShowMore} className="show-more-btn">
-          Show More Contributors
-        </button>
-      )}
-
       {modalOpen && selectedContributor && (
         <ContributorModal
           selectedContributor={selectedContributor}
           onClose={closeModal}
           timeSince={timeSince}
-        ></ContributorModal>
+        />
       )}
     </div>
   );

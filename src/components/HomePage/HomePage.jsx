@@ -9,22 +9,23 @@ const HomePage = () => {
   };
 
   return (
-    <div id="home" className="homepage-container card">
+    <div id="home" className="homepage-container container">
       {/* Headline Section */}
-      <header className="headline-section">
+      <header className="headline-section section">
         <h1>Support Flood Relief Efforts</h1>
-        <p>
-          Nepal has faced devastating floods, causing significant damage and
-          displacement. Your donation can help provide critical resources for
-          rescue operations and support affected families.
+        <p className="text-center">
+          Nepal has been severely impacted by devastating floods, leading to
+          immense damage and displacement. Your donation can make a real
+          difference in providing vital resources for relief and recovery.
         </p>
-        <div className="info-credit">
+        <div className="info-credit credit">
           <p>
             Source:{' '}
             <a
               href="https://www.aljazeera.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className="source-link"
             >
               Al Jazeera
             </a>
@@ -33,15 +34,18 @@ const HomePage = () => {
       </header>
 
       {/* Video Section */}
-      <div className="video-section">
+      <div className="section video-section">
         {!isVideoPlaying ? (
-          <div className="video-thumbnail">
+          <div className="video-thumbnail rounded-corner">
             <img
               src={`${process.env.PUBLIC_URL}/assets/flood-banner.png`}
               alt="Flood in Nepal"
               className="theme-image"
             />
-            <button onClick={handlePlayVideo} className="play-button">
+            <button
+              onClick={handlePlayVideo}
+              className="play-button flex-center"
+            >
               ▶
             </button>
           </div>
@@ -55,13 +59,14 @@ const HomePage = () => {
             allowFullScreen
           ></iframe>
         )}
-        <div className="video-credit">
+        <div className="video-credit credit">
           <p>
             Source:{' '}
             <a
               href="https://www.aljazeera.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className="source-link"
             >
               Al Jazeera
             </a>
@@ -69,8 +74,8 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Overview Section */}
-      <div className="donate-button-container">
+      {/* Call to Action Section */}
+      <div className="donate-button-container flex-center">
         <button className="donate-button">Donate Now</button>
       </div>
     </div>

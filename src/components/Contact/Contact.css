@@ -46,6 +46,7 @@
 
 .contact-item svg {
   margin-right: 10px; /* Spacing between icon and text */
+  color: #007bff; /* Icon color */
 }
 
 .contact-form-container h3 {

@@ -10,7 +10,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 20px;
+  padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -24,9 +24,146 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card h3,
-.card h2,
-.card h1 {
-  margin-top: 0;
-  color: #c0392b; /* Consistent color theme */
+.donate-button {
+  background-color: #e74c3c; /* A vibrant, eye-catching color */
+  color: white;
+  padding: 12px 24px; /* Increased padding */
+  font-size: 1.2em; /* Slightly larger font */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+  background-color: #c0392b; /* Darker shade on hover */
+}
+
+.credit {
+  color: #999;
+  font-style: italic;
+}
+
+.source-link {
+  color: #999; /* Lighter link color */
+  text-decoration: none;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+  color: #555; /* Slightly darker on hover */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.card-logo {
+  font-size: 50px; /* Increased icon size */
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fund-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  text-align: center;
+  max-width: 100%; /* Full width on mobile */
+  width: 100%;
+  margin: 0 auto;
+  flex: 1 1 calc(45% - 20px); /* 2 cards per row on larger screens */
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fund-card:hover {
+  transform: translateY(-5px);
+}
+
+.selectable {
+  user-select: text; /* Enables text selection */
+  -webkit-user-select: text; /* Ensures compatibility with Safari */
+  -moz-user-select: text; /* For Firefox */
+  -ms-user-select: text; /* For IE10+ */
+  cursor: text;
+}
+
+/* Scrollable element class */
+.scrollable {
+  max-height: 400px; /* Adjust the max height to fit your content */
+  overflow-y: auto;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #888 transparent; /* For Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, etc.) */
+.scrollable::-webkit-scrollbar {
+  width: 8px; /* Thinner scrollbar */
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #888; /* Darker color for the scrollbar thumb */
+  border-radius: 10px; /* Rounded scrollbar thumb */
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker on hover */
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent track */
+}
+
+/* Firefox specific scroll customization */
+.scrollable {
+  scrollbar-width: thin; /* Thinner scrollbar */
+  scrollbar-color: #888 transparent; /* Custom color for thumb and track */
+}
+
+.details-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Media queries for tablet (min-width: 768px) */
+@media (min-width: 768px) {
+  .donate-button {
+    padding: 14px 28px; /* Increased padding */
+    font-size: 1.3em; /* Larger font size */
+  }
+  .card-logo {
+    font-size: 60px; /* Larger for tablets */
+  }
+}
+
+/* Media queries for desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .donate-button {
+    padding: 16px 32px; /* Increased padding */
+    font-size: 1.5em; /* Larger font size */
+  }
+  .card-logo {
+    font-size: 70px; /* Larger for desktops */
+  }
 }
