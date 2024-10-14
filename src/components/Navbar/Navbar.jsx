@@ -39,7 +39,7 @@ function NavBar() {
         {/* Logo */}
         <a href="#home" className="navbar-logo">
           <img src="/assets/logo.png" alt="Logo" className="logo" />
-          HopeForNepal
+          FloodAid Nepal
         </a>
 
         {/* Hamburger icon for mobile/tablet */}
@@ -51,12 +51,14 @@ function NavBar() {
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           {[
             'home',
-            'about',
+            'aim',
             'allocation',
+            'transparency',
             'give',
-            'get-involved',
+            'let us thank you',
+            'involved',
             'contributor',
-            'update',
+            'updates',
             'faqs',
             'contact',
           ].map((item, index) => (

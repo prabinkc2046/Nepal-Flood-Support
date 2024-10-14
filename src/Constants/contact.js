@@ -1,11 +1,19 @@
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 export const contacts = {
   personalContact: {
     name: 'Prabin K C',
     email: 'pkmiracle36@gmail.com',
     phone: '+61473654956',
-    linkedin: 'https://www.linkedin.com/in/yourprofile',
+    linkedin:
+      'https://www.linkedin.com/in/experiencedfullstackdeveoperprabinkc/',
   },
-  shareLink: 'https://your-link-to-raise-funds.com', // Replace with your actual link
+  shareLink: 'https://nepal-flood-support.vercel.app/', // Replace with your actual link
   shareMessage:
     'Join us in our mission! Help raise funds by sharing this link!',
   socialPlatforms: {
@@ -15,7 +23,7 @@ export const contacts = {
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
           link
         )}`,
-      icon: 'faFacebook',
+      icon: faFacebook,
     },
     twitter: {
       name: 'Twitter',
@@ -23,7 +31,7 @@ export const contacts = {
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(
           message
         )}&url=${encodeURIComponent(link)}`,
-      icon: 'faTwitter',
+      icon: faTwitter,
     },
     linkedin: {
       name: 'LinkedIn',
@@ -31,7 +39,7 @@ export const contacts = {
         `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
           link
         )}`,
-      icon: 'faLinkedin',
+      icon: faLinkedin,
     },
     whatsapp: {
       name: 'WhatsApp',
@@ -39,13 +47,13 @@ export const contacts = {
         `https://api.whatsapp.com/send?text=${encodeURIComponent(
           `${message} ${link}`
         )}`,
-      icon: 'faWhatsapp',
+      icon: faWhatsapp,
     },
     instagram: {
       name: 'Instagram',
       alertMessage:
         'Instagram does not support direct sharing via URL. Please copy the link manually.',
-      icon: 'faInstagram',
+      icon: faInstagram,
     },
   },
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCopy } from '@fortawesome/free-solid-svg-icons';
 import './GetInvolved.css';
 import { toast } from 'react-toastify';
 import { contacts } from '../../Constants/contact';
@@ -22,16 +22,29 @@ const GetInvolved = () => {
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(shareLink).then(() => {
+    const textArea = document.createElement('textarea');
+    textArea.value = shareLink;
+
+    // Ensure the textarea is off-screen to avoid layout shifting
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
       setLinkCopied(true);
-      toast.success('Link copied to clipboard!'); // Toast for link copied
       setTimeout(() => setLinkCopied(false), 2000); // Reset after 2 seconds
-    });
+    } catch (err) {
+      console.error('Unable to copy the link', err);
+    }
+
+    document.body.removeChild(textArea); // Clean up the DOM
   };
 
   return (
-    <div id="get-involved" className="card section">
-      <span className="card-logo">🙋‍♂️ 🙋🏻‍♀️</span>
+    <div id="involved" className="card section">
       <h2>Get Involved</h2>
       <p>
         Help us raise funds by sharing this link with your friends and family:
@@ -39,11 +52,13 @@ const GetInvolved = () => {
       <p className="share-link">{shareLink}</p>
       <button onClick={handleCopyLink} className="copy-link-btn">
         {linkCopied ? (
-          <div className="check-mark">
-            <FontAwesomeIcon icon={faCheck} />
+          <div>
+            Copied <FontAwesomeIcon icon={faCheck} />
           </div>
         ) : (
-          'Copy Link'
+          <div>
+            Copy Link <FontAwesomeIcon icon={faCopy} />
+          </div>
         )}
       </button>
 

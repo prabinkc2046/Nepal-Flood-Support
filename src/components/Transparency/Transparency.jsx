@@ -1,12 +1,11 @@
 import React from 'react';
 import './Transparency.css'; // Custom CSS for Transparency component
+import { scrollToSection } from '../utils/scrollToSection';
 
 const Transparency = () => {
   return (
-    <div className="card section">
-      <h2>
-        <span className="card-logo">✅</span> Transparency
-      </h2>
+    <div id="transparency" className="card section">
+      <h2>Transparency</h2>
       <p>We commit to regular updates on fund usage, including:</p>
 
       <div className="card-container">
@@ -20,11 +19,6 @@ const Transparency = () => {
             icon: '📽️',
             label: 'Stories',
             desc: 'Sharing the names and stories of families receiving aid.',
-          },
-          {
-            icon: '📈',
-            label: 'Live Tracker',
-            desc: 'Tracking fund allocation and expenses in real-time.',
           },
         ].map((item, idx) => (
           <div key={idx} className="fund-card">
@@ -40,7 +34,9 @@ const Transparency = () => {
         to help those in need.
       </p>
 
-      <button className="donate-button">Donate Now</button>
+      <button className="donate-button" onClick={() => scrollToSection('give')}>
+        Donate Now
+      </button>
     </div>
   );
 };

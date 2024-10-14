@@ -36,7 +36,7 @@ const Update = () => {
   };
 
   return (
-    <div id="update" className="card section">
+    <div id="updates" className="card section">
       <h2>Progress Tracker</h2>
       <p className="fund-description">
         We are raising funds to support people affected by the recent floods in

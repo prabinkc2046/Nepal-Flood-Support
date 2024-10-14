@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HomePage.css'; // Custom CSS for styling
-
+import { scrollToSection } from '../utils/scrollToSection';
 const HomePage = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
@@ -18,7 +18,7 @@ const HomePage = () => {
           immense damage and displacement. Your donation can make a real
           difference in providing vital resources for relief and recovery.
         </p>
-        <div className="info-credit credit">
+        <div className="info-credit credit source-link">
           <p>
             Source:{' '}
             <a
@@ -38,7 +38,7 @@ const HomePage = () => {
         {!isVideoPlaying ? (
           <div className="video-thumbnail rounded-corner">
             <img
-              src={`${process.env.PUBLIC_URL}/assets/flood-banner.png`}
+              src={`${process.env.PUBLIC_URL}/assets/villageUnderWater.webp`}
               alt="Flood in Nepal"
               className="theme-image"
             />
@@ -76,7 +76,12 @@ const HomePage = () => {
 
       {/* Call to Action Section */}
       <div className="donate-button-container flex-center">
-        <button className="donate-button">Donate Now</button>
+        <button
+          className="donate-button"
+          onClick={() => scrollToSection('give')}
+        >
+          Donate Now
+        </button>
       </div>
     </div>
   );

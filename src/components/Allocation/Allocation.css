@@ -10,7 +10,7 @@
 /* Allocation Content */
 .allocation-content {
   display: flex;
-  flex-direction: column; /* Column for mobile */
+  flex-direction: column;
   gap: 2rem;
   width: 100%;
 }
@@ -22,13 +22,13 @@
 }
 
 .pie-chart {
-  display: none; /* Hidden by default on mobile */
-  max-width: 100%; /* Full width on mobile */
+  display: none;
+  max-width: 100%;
   margin: 2rem auto;
 }
 
 .pie-chart.show {
-  display: block; /* Show chart when button is clicked */
+  display: block;
 }
 
 .toggle-chart-btn {
@@ -41,7 +41,7 @@
   font-size: 1rem;
   font-weight: 600;
   transition: background-color 0.3s ease;
-  width: 100%; /* Full width for mobile button */
+  width: 100%;
 }
 
 .toggle-chart-btn:hover {
@@ -53,11 +53,51 @@
   gap: 1.5rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.fund-desc {
-  font-size: 0.95rem;
-  color: #333;
+/* Individual Fund Card */
+.sustenance-item {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Overlay that takes the top half of the background */
+.sustenance-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%; /* Top half of the card */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 10px;
+}
+
+.sustenance-item-overlay h3,
+.sustenance-item-overlay p {
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+
+.sustenance-item-overlay h3 {
+  font-size: 1.25rem;
+}
+
+.sustenance-item-overlay p {
+  font-size: 1rem;
 }
 
 /* Media Queries for Larger Screens (Tablets and Desktops) */
@@ -69,31 +109,31 @@
   }
 
   .toggle-chart-btn {
-    width: auto; /* Adjust button width for larger screens */
+    width: auto;
   }
 
   .pie-chart {
-    max-width: 400px; /* Constrain pie chart size */
+    max-width: 400px;
   }
 
-  .fund-card {
+  .sustenance-item {
     max-width: 300px;
   }
 }
 
 @media (min-width: 1024px) {
   .allocation-content {
-    flex-direction: row; /* Side-by-side on larger screens */
+    flex-direction: row;
     justify-content: space-between;
   }
 
   .toggle-chart-btn {
-    display: none; /* Hide toggle button on large screens */
+    display: none;
   }
 
   .pie-chart {
-    display: block; /* Always show pie chart on large screens */
-    margin: 0; /* Remove margin for side-by-side layout */
+    display: block;
+    margin: 0;
   }
 
   .fund-details {

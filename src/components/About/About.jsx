@@ -1,48 +1,94 @@
 import React from 'react';
 import './About.css'; // Custom CSS for styling
+import { scrollToSection } from '../utils/scrollToSection';
 
 const About = () => {
   return (
-    <div id="about" className="container">
+    <div id="aim" className="container">
       <div className="flex-column">
         {/* About the Cause Card */}
         <div className="card section">
           <div className="rainfall-container">
-            <div className="card-logo">🌧️</div> {/* Icon */}
-            <h2>Cause of The Flood</h2>
+            <h2>Why the Flood Happened</h2>
             <p>
               South Asia's monsoon has worsened, with heavier, longer rains.
               Kathmandu received 322 mm of rain in three days, setting a record.
               The flooding has caused massive destruction.
             </p>
-            <p>
-              Read more:
-              <a
-                href="https://peoplesdispatch.org/2024/09/30/unprecedented-rains-cause-floods-and-landslides-in-nepal-killing-nearly-200-people/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="source-link"
-              >
-                Peoples Dispatch
-              </a>
-            </p>
+            <div className="credit">
+              <p>
+                Read more:
+                <a
+                  href="https://peoplesdispatch.org/2024/09/30/unprecedented-rains-cause-floods-and-landslides-in-nepal-killing-nearly-200-people/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="source-link"
+                >
+                  Peoples Dispatch
+                </a>
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Purpose of Fundraising Card */}
-        <div className="card section">
-          <div className="card-logo">💰</div> {/* Icon */}
-          <h2>Fundraising Goal</h2>
-          <p>
-            We aim to provide food, water, shelter, and medical aid. Donations
-            will help rebuild homes and support long-term recovery.
-          </p>
-          <button className="donate-button">Donate Now</button>
+        <div className="section fundraising-goal">
+          <h2>Join Us in Providing Hope and Relief</h2> {/* Updated Title */}
+          {/* Essential Needs Goal */}
+          <div className="goal-item card">
+            <div className="goal-description">
+              <h3>Essential Needs</h3>
+              <p>
+                Our immediate aim is to provide food and water to those affected
+                by the floods.
+              </p>
+            </div>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/foodWater.webp`}
+              alt="Food and Water Distribution"
+              className="goal-image"
+            />
+          </div>
+          {/* Winter Support Goal */}
+          <div className="goal-item">
+            <div className="goal-description">
+              <h3>Winter Support</h3>
+              <p>
+                If funds allow, we will provide warm clothing and essentials as
+                winter approaches.
+              </p>
+            </div>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/winterClothes.webp`}
+              alt="Warm Clothing Distribution"
+              className="goal-image"
+            />
+          </div>
+          {/* Rebuilding Homes Goal */}
+          <div className="goal-item card">
+            <div className="goal-description">
+              <h3>Rebuilding Homes</h3>
+              <p>
+                Ultimately, we aim to help rebuild homes and support long-term
+                recovery for affected families.
+              </p>
+            </div>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/homeRebuilding.webp`}
+              alt="Rebuilding Homes"
+              className="goal-image"
+            />
+          </div>
+          <button
+            className="donate-button"
+            onClick={() => scrollToSection('give')}
+          >
+            Donate Now
+          </button>
         </div>
 
         {/* Organizing Body Card */}
         <div className="card section">
-          <div className="card-logo">🏫</div> {/* Icon */}
           <h2>About the Campaign</h2>
           <p>
             Led by{' '}

@@ -15,6 +15,7 @@ import Allocation from './components/Allocation/Allocation';
 import FAQs from './components/FAQs/FAQs';
 import Footer from './components/Footer/Footer';
 import Transparency from './components/Transparency/Transparency';
+import Acknowledge from './components/Acknowledge/Acknowledge';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
         <Allocation />
         <Transparency />
         <Give />
+        <Acknowledge />
         <GetInvolved />
         <QueryClientProvider client={queryClient}>
           <Contributor />

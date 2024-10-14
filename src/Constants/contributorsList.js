@@ -2,11 +2,13 @@ export const contributorsList = [
   {
     first_name: 'John',
     last_name: 'Doe',
+    email: 'pkmiracle36@gmail.com',
     amount: 100,
     thoughts:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam delectus tenetur quasi in blanditiis at, debitis architecto dicta velit! Sequi laborum eum, quibusdam iste, quos incidunt corrupti voluptas cupiditate a pariatur doloremque perferendis accusantium ipsum delectus illo nobis facere eaque, corporis eveniet voluptate tenetur impedit laboriosam minus doloribus. Aspernatur, nihil?',
     date: '2024-10-05',
     contributionsCount: 1,
+    publish_name: false,
   },
   {
     name: 'Jane Smith',

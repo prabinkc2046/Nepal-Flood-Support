@@ -39,9 +39,10 @@
   background-color: #c0392b; /* Darker shade on hover */
 }
 
-.credit {
+.credit p {
   color: #999;
   font-style: italic;
+  font-size: 0.5rem;
 }
 
 .source-link {

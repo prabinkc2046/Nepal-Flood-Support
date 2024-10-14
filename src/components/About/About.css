@@ -1,0 +1,61 @@
+/* About.css */
+.fundraising-goal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.goal-item {
+  display: flex;
+  flex-direction: column; /* Stack items vertically for mobile */
+  margin-bottom: 15px;
+}
+
+.goal-description {
+  margin-bottom: 10px; /* Space between text and image */
+}
+
+.goal-description h3 {
+  color: #4caf50;
+}
+
+.goal-description p {
+  color: #555;
+}
+
+.goal-image {
+  width: 100%; /* Full width of the parent */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Slightly round the corners */
+}
+
+.card-logo {
+  font-size: 2rem; /* Size for the card logo */
+  margin-bottom: 10px; /* Spacing below the icon */
+}
+
+/* Media Queries for Larger Screens */
+@media (min-width: 600px) {
+  .goal-item {
+    flex-direction: row; /* Change to row layout for larger screens */
+    align-items: center; /* Center align items vertically */
+  }
+
+  .goal-description {
+    flex: 1; /* Allow description to take remaining space */
+    margin-right: 15px; /* Space between description and image */
+  }
+
+  .goal-image {
+    width: 40%; /* Set image width for larger screens */
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: 30px; /* Increase padding for larger screens */
+  }
+
+  .goal-image {
+    width: 50%; /* Increase image width for even larger screens */
+  }
+}
