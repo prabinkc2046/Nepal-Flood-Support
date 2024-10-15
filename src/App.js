@@ -1,5 +1,4 @@
 import './App.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toast styles
 import { ToastContainer } from 'react-toastify';
 import About from './components/About/About';
@@ -17,8 +16,6 @@ import Footer from './components/Footer/Footer';
 import Transparency from './components/Transparency/Transparency';
 import Acknowledge from './components/Acknowledge/Acknowledge';
 
-const queryClient = new QueryClient();
-
 function App() {
   return (
     <>
@@ -32,9 +29,7 @@ function App() {
         <Give />
         <Acknowledge />
         <GetInvolved />
-        <QueryClientProvider client={queryClient}>
-          <Contributor />
-        </QueryClientProvider>
+        <Contributor />
         <Update />
         <FAQs />
         <Contact />

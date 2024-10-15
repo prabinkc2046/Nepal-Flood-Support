@@ -6,45 +6,40 @@ import Spinner from '../Spinner/Spinner';
 import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
-  const form = useRef(); // Create a ref for the form
-  const [submitted, setSubmitted] = useState(false); // State to track form submission
-  const [publishName, setPublishName] = useState(false); // State for toggle button
-  const [isSubmitting, setIsSubmitting] = useState(false); // State for tracking form submission loading
+  const form = useRef();
+  const [submitted, setSubmitted] = useState(false);
+  const [publishName, setPublishName] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Function to handle toggling of the publish name option
   const handleToggle = () => {
-    setPublishName(!publishName); // Toggle between true and false
+    setPublishName(!publishName);
   };
 
-  // Function to get the current date and time in ISO 8601 format (UTC)
   const getCurrentDateTime = () => {
-    return new Date().toISOString(); // Returns current date and time in ISO format
+    return new Date().toISOString();
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setIsSubmitting(true); // Show loading spinner
+    setIsSubmitting(true);
 
     if (form.current) {
       const formData = new FormData(form.current);
+      const amountDonated = parseFloat(formData.get('amount_donated')); // Get the recent donation amount
 
-      // Create the data object to send to the backend
       const donorData = {
         first_name: formData.get('first_name'),
         last_name: formData.get('last_name'),
         email: formData.get('email'),
-        amount: parseFloat(formData.get('amount_donated')), // Use parseFloat for decimal values
+        amount: amountDonated,
         thoughts: formData.get('message'),
-        date: getCurrentDateTime(), // Use the updated date function
+        date: getCurrentDateTime(),
         contributionsCount: 1,
         publish_name: publishName,
       };
 
       try {
-        // Use the API URL from the environment variable
         const apiUrl = process.env.REACT_APP_API_URL;
-
-        // Send the donor data to the FastAPI backend using axios
         const response = await axios.post(`${apiUrl}/add_donor`, donorData);
 
         if (response.status === 200) {
@@ -52,29 +47,14 @@ const Acknowledge = () => {
             'Thank you! Your donation details have been submitted successfully.'
           );
 
-          // Send the form data via email using emailjs
-          emailjs
-            .sendForm(
-              process.env.REACT_APP_EMAILJS_SERVICE_ID,
-              process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-              form.current,
-              process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-            )
-            .then(
-              response => {
-                console.log(
-                  'Email sent successfully!',
-                  response.status,
-                  response.text
-                );
-                setSubmitted(true); // Set form as submitted
-                form.current.reset(); // Reset form fields after successful email submission
-              },
-              error => {
-                console.error('Failed to send email. Error: ', error);
-                toast.error('Failed to send email. Please try again later.');
-              }
-            );
+          await emailjs.sendForm(
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            form.current,
+            process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+          );
+          setSubmitted(true);
+          form.current.reset();
         } else {
           toast.error('Something went wrong! Please try again.');
         }
@@ -87,7 +67,7 @@ const Acknowledge = () => {
           );
         }
       } finally {
-        setIsSubmitting(false); // Hide loading spinner
+        setIsSubmitting(false);
       }
     }
   };
@@ -100,88 +80,99 @@ const Acknowledge = () => {
           Please provide your details so we can send you a thank you note for
           your generous support.
         </p>
-        {submitted ? (
-          <div className="thank-you-message">
-            <h3>Thank You for Your Donation!</h3>
-            <p>
-              We have received your details successfully. We appreciate your
-              contribution.
-            </p>
+
+        <form onSubmit={handleSubmit} ref={form} className="donation-form">
+          <div className="form-group">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              type="text"
+              id="first-name"
+              name="first_name"
+              placeholder="Enter your first name"
+              required
+            />
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} ref={form} className="donation-form">
-            <div className="form-group">
-              <label htmlFor="first-name">First Name</label>
-              <input
-                type="text"
-                id="first-name"
-                name="first_name"
-                placeholder="Enter your first name"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="last-name">Last Name</label>
-              <input
-                type="text"
-                id="last-name"
-                name="last_name"
-                placeholder="Enter your last name"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="amount-donated">Amount Donated</label>
-              <input
-                type="number"
-                id="amount-donated"
-                name="amount_donated"
-                placeholder="Enter the amount you donated"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email address"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message or Testimonial (Optional)</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="6"
-                placeholder="Feel free to share any thoughts or a message of support"
-              />
-            </div>
-            <div className="form-group toggle-group">
-              <label htmlFor="publish_name">
-                Would you like your name to be published on our contributor
-                page?
+          <div className="form-group">
+            <label htmlFor="last-name">Last Name</label>
+            <input
+              type="text"
+              id="last-name"
+              name="last_name"
+              placeholder="Enter your last name"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="amount-donated">Amount Donated</label>
+            <input
+              type="number"
+              id="amount-donated"
+              name="amount_donated"
+              placeholder="Enter the amount you donated"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message or Testimonial (Optional)</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Feel free to share any thoughts or a message of support"
+            />
+          </div>
+          <div className="form-group toggle-group">
+            <label htmlFor="publish_name">
+              Would you like your name to be published on our contributor page?
+            </label>
+            <div className="toggle-container">
+              <span>{publishName ? 'Yes' : 'No'}</span>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  id="publish_name"
+                  name="publish_name"
+                  value={publishName ? 'Yes' : 'No'}
+                  checked={publishName}
+                  onChange={handleToggle}
+                />
+                <span className="slider round"></span>
               </label>
-              <div className="toggle-container">
-                <span>{publishName ? 'Yes' : 'No'}</span>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    id="publish_name"
-                    name="publish_name"
-                    value={publishName ? 'Yes' : 'No'}
-                    checked={publishName}
-                    onChange={handleToggle}
-                  />
-                  <span className="slider round"></span>
-                </label>
-              </div>
             </div>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? <Spinner /> : 'Submit Your Details'}
-            </button>
-          </form>
+          </div>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Spinner text="Submitting... please wait" />
+              </>
+            ) : (
+              'Submit Your Details'
+            )}
+          </button>
+        </form>
+
+        {submitted && (
+          <div className="thank-you-message card">
+            <div className="overlay-top">
+              <h2>Thank You for Your Donation!</h2>
+            </div>
+
+            <div className="overlay-bottom">
+              <p>
+                We have received your details successfully. We appreciate your
+                contribution.
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </div>

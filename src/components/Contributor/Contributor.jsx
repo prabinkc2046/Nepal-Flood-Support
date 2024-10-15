@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 import './Contributor.css';
-import { useQuery } from '@tanstack/react-query';
 import ContributorModal from '../Modal/ContributorModal/ContributorModal';
 import VisibilitySensor from 'react-visibility-sensor';
-
-// Function to fetch contributors from the API
-const fetchContributors = async () => {
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const response = await fetch(`${apiUrl}/list_donors`);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-};
+import ContributorSkeleton from '../SkeletonCollection/ContributorSkeleton/ContributorSkeleton';
+import useContributors from '../utils/useContributors';
+import { capitalizeFirstLetter } from '../utils/capitaliseFirstLetter';
 
 const timeSince = date => {
   const now = new Date();
@@ -41,14 +33,9 @@ const Contributor = () => {
   const [sortCriteria, setSortCriteria] = useState('default');
   const [selectedContributor, setSelectedContributor] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isInView, setIsInView] = useState(false);
 
-  // Use React Query to fetch contributors
-  const { data: contributors = [], refetch } = useQuery({
-    queryKey: ['contributors'],
-    queryFn: fetchContributors,
-    enabled: isInView,
-  });
+  // Use the custom hook
+  const { contributors, loading, refetch, hasUpdated } = useContributors();
 
   const sortContributors = criteria => {
     switch (criteria) {
@@ -84,7 +71,6 @@ const Contributor = () => {
   };
 
   const onVisibilityChange = isVisible => {
-    setIsInView(isVisible);
     if (isVisible) {
       refetch();
     }
@@ -93,7 +79,11 @@ const Contributor = () => {
   return (
     <VisibilitySensor onChange={onVisibilityChange} partialVisibility>
       <div id="contributor" className="section">
-        <h2>Contributors</h2>
+        <h2>Our Generous Contributors</h2>
+        <p className="contributor-intro">
+          We are incredibly grateful to everyone who has supported us. Below is
+          a list of our amazing contributors who have helped us make an impact.
+        </p>
 
         <div className="contributor-navbar">
           <button
@@ -129,30 +119,47 @@ const Contributor = () => {
         </div>
 
         <div className="contributor-grid-horizontal no-scroll">
-          {sortedContributors.map((contributor, index) => (
-            <div key={index} className="contributor-item">
-              <h3>
-                {contributor.publish_name
-                  ? `${contributor.first_name} ${contributor.last_name}`
-                  : 'Anonymous'}
-              </h3>
-              <p className="amount">💲{contributor.amount}</p>
-              <p className="thoughts">
-                {contributor.thoughts
-                  .trim()
-                  .split(/\s+/)
-                  .slice(0, 4)
-                  .join(' ') + '...'}
-              </p>
-              <p className="date-contributed">{timeSince(contributor.date)}</p>
-              <button
-                onClick={() => openModal(contributor)}
-                className="details-btn"
-              >
-                View Details
-              </button>
-            </div>
-          ))}
+          {loading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <ContributorSkeleton key={index} />
+            ))
+          ) : sortedContributors.length > 0 ? (
+            sortedContributors.map((contributor, index) => (
+              <div key={index} className="contributor-item">
+                <div className="contributor-heading">
+                  <h3>
+                    {contributor.publish_name
+                      ? `${capitalizeFirstLetter(contributor.first_name)}`
+                      : 'Anonymous'}
+                  </h3>
+                  <p className="date-contributed">
+                    Contributed {timeSince(contributor.date)}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="thoughts">
+                    {capitalizeFirstLetter(
+                      contributor.thoughts
+                        .trim()
+                        .split(/\s+/)
+                        .slice(0, 4)
+                        .join(' ') + '...'
+                    )}
+                  </p>
+                  <p className="amount"> ${contributor.amount}</p>
+                </div>
+                <button
+                  onClick={() => openModal(contributor)}
+                  className="details-btn"
+                >
+                  View Details
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No contributions found at this time. Check back soon!</p>
+          )}
         </div>
 
         {modalOpen && selectedContributor && (

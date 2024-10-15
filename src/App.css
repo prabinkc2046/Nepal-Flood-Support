@@ -147,6 +147,23 @@
   background-color: #0056b3;
 }
 
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    background-color: #f2f2f2;
+    opacity: 1;
+  }
+  50% {
+    background-color: #ececec;
+    opacity: 0.9;
+    transform: scale(1.01); /* Minor scale for elegance */
+  }
+  100% {
+    background-color: #f2f2f2;
+    opacity: 1;
+  }
+}
+
 /* Media queries for tablet (min-width: 768px) */
 @media (min-width: 768px) {
   .donate-button {

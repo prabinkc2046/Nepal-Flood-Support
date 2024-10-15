@@ -37,7 +37,7 @@ const FAQs = () => {
                 transition: 'max-height 0.3s ease',
               }}
             >
-              <p>{faq.answer}</p>
+              <p className="secondary-paragraph">{faq.answer}</p>
             </div>
           </div>
         ))}

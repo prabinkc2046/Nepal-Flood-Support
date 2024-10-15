@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './ContributorModal.css'; // Add styles for the modal
+import { capitalizeFirstLetter } from '../../utils/capitaliseFirstLetter';
 
 const ContributorModal = ({ selectedContributor, onClose, timeSince }) => {
   // Function to handle click outside the modal content
@@ -17,18 +18,25 @@ const ContributorModal = ({ selectedContributor, onClose, timeSince }) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  });
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content contributor-item card">
-        <h3>{selectedContributor.name}</h3>
-        <p className="amount">💲{selectedContributor.amount}</p>
-        <p className="thoughts">{selectedContributor.thoughts}</p>
+      <div className="modal-content">
+        <h3>
+          {selectedContributor.publish_name
+            ? `${capitalizeFirstLetter(selectedContributor.first_name)}`
+            : 'Anonymous'}
+        </h3>
+
+        <p className="thoughts">
+          {capitalizeFirstLetter(selectedContributor.thoughts)}
+        </p>
         <p className="date-contributed">
           {timeSince(selectedContributor.date)}
         </p>
-        <p className="amount">Contribution: ${selectedContributor.amount}</p>
+
+        <p className="amount">${selectedContributor.amount}</p>
 
         <button onClick={onClose} className="details-btn">
           <span style={{ fontSize: '1rem' }}>ㄨ</span>

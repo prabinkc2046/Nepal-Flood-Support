@@ -51,7 +51,7 @@ export const allocationData = {
     {
       label: 'Salt & Spices',
       percentage: '3.67%',
-      imgSrc: '/assets/life-sustenances/spices.webp',
+      imgSrc: '/assets/life-sustenances/salt.webp',
     },
   ],
 };

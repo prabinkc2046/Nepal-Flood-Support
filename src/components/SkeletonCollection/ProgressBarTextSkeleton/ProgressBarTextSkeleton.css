@@ -1,0 +1,20 @@
+.text-skeleton {
+  background-color: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  height: 1.2em; /* Match the text font-size */
+  width: 100%; /* Full width for text skeleton */
+  margin-bottom: 10px; /* Match the spacing of the actual text */
+  border-radius: 4px; /* Slight rounding for text lines */
+}
+
+.text-skeleton.short {
+  width: 40%; /* For shorter text skeletons */
+}
+
+.text-skeleton.medium {
+  width: 60%; /* For medium text skeletons */
+}
+
+.text-skeleton.long {
+  width: 100%; /* For full-width text skeletons */
+}

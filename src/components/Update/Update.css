@@ -1,7 +1,7 @@
 .fund-description {
   font-size: 1.2em;
   margin-bottom: 25px;
-  text-align: justify;
+  text-align: center;
 }
 
 .progress-bar {
@@ -14,7 +14,7 @@
   overflow: visible;
 }
 
-.progress {
+.progress-level {
   height: 100%;
   border-radius: 5px;
   position: relative;
@@ -25,6 +25,17 @@
   justify-content: space-between;
   font-size: 1.2em;
   margin-bottom: 20px;
+}
+
+.tooltip {
+  position: absolute;
+  top: -35px;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 .latest-news {
@@ -52,12 +63,13 @@
 
 .news-header h4 {
   margin: 0;
+  color: #4caf50;
 }
 
 .toggle-icon {
   font-size: 2rem;
   user-select: none;
-  color: #e74c3c;
+  color: #4caf50;
 }
 
 .news-content {
@@ -71,18 +83,25 @@
 
 .news-content span {
   font-size: 0.9em;
-  color: #888;
+  color: #555;
 }
 
-.tooltip {
-  position: absolute;
-  top: -35px;
-  background-color: #333;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  white-space: nowrap;
+.contributors-info {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.contributors-count strong {
+  font-size: 1.5rem;
+}
+
+.contributors-icon {
+  color: #4caf50; /* Change this to your desired color */
+  margin-right: 8px; /* Add some space between the icon and number */
 }
 
 @media (min-width: 676px) {

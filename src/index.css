@@ -84,6 +84,15 @@ p {
   text-align: center;
 }
 
+.secondary-paragraph {
+  font-size: 1.2rem; /* Base size */
+  line-height: 1.7; /* Improved readability */
+  margin-bottom: 1.5rem; /* Consistent space below paragraphs */
+  color: #555;
+  max-width: 800px; /* Limit width for better readability */
+  text-align: center;
+}
+
 /* Link Styles */
 a {
   color: #c0392b; /* Consistent link color */

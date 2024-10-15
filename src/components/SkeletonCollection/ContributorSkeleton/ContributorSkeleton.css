@@ -1,0 +1,91 @@
+/* Card Style */
+.contributor-item-skltn {
+  background-color: #f9f9f9; /* Light background to match light theme */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 337px;
+  width: 200px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Adjust child elements with a slight contrast in background */
+.contributor-heading-skltn,
+.date-contributed-skltn,
+.amount-skltn,
+.details-btn-skltn,
+.thoughts-skltn {
+  background-color: #eaeaea; /* Slightly darker than the card background */
+  border-radius: 4px;
+}
+
+.contributor-heading-skltn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 30%;
+}
+
+.date-contributed-skltn {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  width: 50%;
+  height: 15%;
+}
+
+.amount-skltn {
+  margin-top: 10px;
+  width: 50%;
+  height: 15%;
+}
+
+.details-btn-skltn {
+  padding: 10px 20px;
+  margin-top: 10px;
+  height: 10%;
+  width: 100px;
+}
+
+.thoughts-skltn {
+  margin: 10px 0;
+  height: 40%;
+  width: 100%;
+}
+
+/* Mobile-first styling */
+@media (min-width: 768px) {
+  .contributor-item-skltn {
+    min-width: 300px;
+    width: 100%;
+    height: 144px;
+    padding: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contributor-heading-skltn {
+    width: 20%;
+    height: 90%;
+  }
+
+  .date-contributed-skltn,
+  .amount-skltn {
+    width: 20%;
+    height: 100%;
+  }
+
+  .details-btn-skltn {
+    height: 20%;
+  }
+
+  .thoughts-skltn {
+    height: 100%;
+    width: 40%;
+  }
+}

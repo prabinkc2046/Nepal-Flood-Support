@@ -1,0 +1,21 @@
+/* Skeleton loader styling for the ProgressBar */
+.skeleton {
+  background-color: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  border-radius: 5px; /* Match the actual border-radius of the progress bar */
+  height: 30px; /* Match the progress bar height */
+  width: 100%; /* Full width */
+  margin: 20px 0; /* Match the margin of the progress bar */
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}

@@ -21,6 +21,10 @@
   transition: max-height 0.3s ease;
 }
 
+.faq-answer p {
+  color: #555;
+}
+
 .faq-header {
   display: flex;
   justify-content: space-between;
@@ -30,6 +34,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+}
+
+.faq-header h4 {
+  color: #4caf50;
 }
 
 @media (min-width: 676px) {
