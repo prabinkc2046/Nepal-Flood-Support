@@ -4,9 +4,11 @@ import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { contacts } from '../../Constants/contact';
 import './Contact.css';
+import Spinner from '../Spinner/Spinner';
 
 const Contact = () => {
   const [messageStatus, setMessageStatus] = useState('');
+  const [sending, setSending] = useState(false);
   const contactFormRef = useRef();
   const { personalContact } = contacts;
 
@@ -32,7 +34,7 @@ const Contact = () => {
       email: formData.get('email'),
       message: formData.get('message'),
     };
-
+    setSending(true);
     try {
       const response = await fetch(
         `${process.env.REACT_APP_EMAIL_API_URL}/send-message`,
@@ -45,10 +47,8 @@ const Contact = () => {
         }
       );
 
-      const responseData = await response.json(); // Try logging this
-      console.log(responseData);
-
       if (response.ok) {
+        setSending(false);
         setMessageStatus('Message sent successfully!');
         contactFormRef.current.reset(); // Reset form fields
       } else {
@@ -99,7 +99,8 @@ const Contact = () => {
             />
             <textarea name="message" placeholder="Your Message" required />
             <button type="submit">
-              {messageStatus ? <span>{messageStatus}</span> : 'Send Message'}
+              {sending ? <Spinner text="Sending ..." /> : 'Send Message'}
+              {messageStatus ?? <span>{messageStatus}</span>}
             </button>
           </form>
         </div>
