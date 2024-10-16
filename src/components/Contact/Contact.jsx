@@ -4,11 +4,12 @@ import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { contacts } from '../../Constants/contact';
 import './Contact.css';
+import { toast } from 'react-toastify';
 import Spinner from '../Spinner/Spinner';
 
 const Contact = () => {
-  const [messageStatus, setMessageStatus] = useState('');
-  const [sending, setSending] = useState(false);
+  const [messageStatus, setMessageStatus] = useState(''); // For success/error message
+  const [sending, setSending] = useState(false); // For spinner
   const contactFormRef = useRef();
   const { personalContact } = contacts;
 
@@ -34,7 +35,10 @@ const Contact = () => {
       email: formData.get('email'),
       message: formData.get('message'),
     };
-    setSending(true);
+
+    setSending(true); // Show spinner
+    setMessageStatus(''); // Clear any previous status messages
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_EMAIL_API_URL}/send-message`,
@@ -48,18 +52,22 @@ const Contact = () => {
       );
 
       if (response.ok) {
-        setSending(false);
         setMessageStatus('Message sent successfully!');
+        toast.success('Message sent successfully!');
         contactFormRef.current.reset(); // Reset form fields
       } else {
-        throw new Error('Failed to send message.');
+        setMessageStatus('Failed to send message.');
+        toast.error('Failed to send message.');
       }
     } catch (error) {
-      console.error('Error sending message:', error);
       setMessageStatus('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setSending(false); // Hide spinner
     }
 
-    setTimeout(() => setMessageStatus(''), 2000); // Clear message after 2 seconds
+    // Automatically clear the status message after 2 seconds
+    setTimeout(() => setMessageStatus(''), 2000);
   };
 
   return (
@@ -100,9 +108,17 @@ const Contact = () => {
             <textarea name="message" placeholder="Your Message" required />
             <button type="submit">
               {sending ? <Spinner text="Sending ..." /> : 'Send Message'}
-              {messageStatus ?? <span>{messageStatus}</span>}
             </button>
           </form>
+          {messageStatus && (
+            <p
+              className={`message-status ${
+                messageStatus.includes('successfully') ? 'success' : 'error'
+              }`}
+            >
+              {messageStatus}
+            </p>
+          )}
         </div>
       </div>
     </div>
