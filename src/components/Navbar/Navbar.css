@@ -1,105 +1,196 @@
+/* General Navbar Styles */
 .navbar {
-  background-color: #333;
-  height: 90px; /* Adjust height for larger logo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: transparent;
+  height: 90px;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1000; /* Ensure navbar stays on top */
 }
 
-.navbar-container {
+.navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 90px;
+  z-index: 1001; /* Ensure header elements stay on top */
+  margin-top: 10px;
+  transition: opacity 0.5s ease-in-out; /* Smooth transition */
+}
+
+.navbar-header.visible {
+  opacity: 1; /* Show the navbar */
+}
+
+.navbar-header.hidden {
+  opacity: 0; /* Hide the navbar */
+}
+
+.navbar-logo {
+  display: flex;
+  min-width: 350px;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar-logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 1002;
+}
+
+.navbar-logo .logo-name {
+  display: none;
+}
+
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333; /* Default color set to white for contrast */
+  z-index: 1002; /* Ensure it's always clickable */
+  margin-right: 5px;
+}
+
+.menu-icon.active {
+  color: #fff; /* White color when menu is open */
+}
+
+/* Fullscreen Nav Menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 999;
+  padding-top: 90px; /* Match the height of the navbar */
+  overflow-y: auto; /* Allows scrolling of nav items */
+  border: 1px solid;
+}
+
+.nav-menu.active {
+  display: flex;
+}
+
+.nav-menu.active body {
+  overflow-y: hidden;
+}
+
+/* Ensure logo and menu stay on top in the open state */
+.nav-menu .navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* Matching background */
+  z-index: 1001;
+  padding: 20px;
+}
+
+/* Main title for menu */
+.menu-title {
+  color: #fff;
+  font-size: 2.2rem;
+  margin-top: 120px; /* Push down below the logo and menu */
+  margin-bottom: 20px;
+}
+
+/* Responsive Nav Items */
+.nav-items {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Adaptive grid for nav items */
+  gap: 15px;
   width: 100%;
   padding: 0 20px;
 }
 
-.navbar-logo {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center; /* Align logo and text vertically */
-  justify-content: flex-start; /* Align logo to the left */
-}
-
-.logo {
-  width: 80px; /* Adjusted logo size for better visibility */
-  height: 80px; /* Maintain aspect ratio */
-  overflow: hidden; /* Hide overflow */
-  margin-right: 10px; /* Space between logo and text */
-  border-radius: 5px;
-}
-
-.menu-icon {
-  display: none;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* Menu items */
-.nav-menu {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  width: 80%;
-}
-
 .nav-item {
-  margin: 0 15px;
-  text-align: center;
+  margin: 10px 0;
 }
 
-.nav-links {
+/* Ensure cards have equal width on small screens */
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
   color: #fff;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.3s, transform 0.3s; /* Smooth transitions */
+  transition: transform 0.3s;
+  width: 100%; /* Ensure cards take full width */
 }
 
-.nav-links:hover {
-  color: #ff6347; /* Water-like color on hover */
-  transform: scale(1.1); /* Slightly enlarge on hover */
+.nav-card:hover {
+  transform: scale(1.05);
 }
 
-/* Mobile and tablet styles */
-@media screen and (max-width: 1100px) {
-  .menu-icon {
+.nav-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.nav-card-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-card-content p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+/* Responsive Design */
+@media (min-width: 338px) {
+  .nav-items {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* 2 items per row on very small screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-items {
+    grid-template-columns: repeat(3, 1fr); /* 3 items on medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-logo img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .navbar-logo .logo-name {
     display: block;
+    z-index: 1002;
   }
 
-  .nav-menu {
-    position: fixed;
-    top: 90px; /* Adjust to match new navbar height */
-    right: -100%;
-    width: 60%; /* Adjust this to control the width of the menu when opened */
-    max-height: calc(100vh - 90px); /* Ensure it does not cover the navbar */
-    background-color: #333;
-    flex-direction: column;
-    justify-content: flex-start; /* Align items to the top */
-    align-items: center;
-    transition: right 0.5s ease; /* Smooth menu transition */
-    overflow-y: auto; /* Allow vertical scrolling */
-    padding: 20px; /* Add some padding */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Optional: add shadow for depth */
-  }
-
-  .nav-menu.active {
-    right: 0;
-  }
-
-  .nav-item {
-    margin: 20px 0;
-  }
-
-  .nav-links {
-    font-size: 1.8rem;
+  .nav-items {
+    grid-template-columns: repeat(4, 1fr); /* 4 items on large screens */
   }
 }

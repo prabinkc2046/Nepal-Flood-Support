@@ -36,7 +36,7 @@ const Give = () => {
 
         <button
           className="donate-button"
-          onClick={() => scrollToSection('acknowledgement')}
+          onClick={() => scrollToSection('let us thank you')}
         >
           Proceed to Acknowledge Your Donation
         </button>

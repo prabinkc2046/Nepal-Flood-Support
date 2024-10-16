@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import emailjs from '@emailjs/browser';
 import { contacts } from '../../Constants/contact';
 import './Contact.css';
 
@@ -23,26 +22,44 @@ const Contact = () => {
     window.open(personalContact.linkedin, '_blank');
   };
 
-  const sendEmail = e => {
+  // New send message function using API endpoint from environment variable
+  const sendEmail = async e => {
     e.preventDefault();
+    const formData = new FormData(contactFormRef.current);
 
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        contactFormRef.current,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(result => {
+    const data = {
+      name: formData.get('fullName'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_EMAIL_API_URL}/send-message`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const responseData = await response.json(); // Try logging this
+      console.log(responseData);
+
+      if (response.ok) {
         setMessageStatus('Message sent successfully!');
         contactFormRef.current.reset(); // Reset form fields
-        setTimeout(() => setMessageStatus(''), 2000); // Clear message after 2 seconds
-      })
-      .catch(error => {
-        console.error('Error sending email:', error);
-        setMessageStatus('Failed to send message. Please try again.');
-        setTimeout(() => setMessageStatus(''), 2000);
-      });
+      } else {
+        throw new Error('Failed to send message.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setMessageStatus('Failed to send message. Please try again.');
+    }
+
+    setTimeout(() => setMessageStatus(''), 2000); // Clear message after 2 seconds
   };
 
   return (

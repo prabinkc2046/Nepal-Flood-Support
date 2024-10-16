@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
@@ -40,19 +39,14 @@ const Acknowledge = () => {
 
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
+        const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
+
         const response = await axios.post(`${apiUrl}/add_donor`, donorData);
 
         if (response.status === 200) {
-          toast.success(
-            'Thank you! Your donation details have been submitted successfully.'
-          );
+          // Call the Render backend email API to send email
+          await axios.post(`${emailApiUrl}/send-email`, donorData);
 
-          await emailjs.sendForm(
-            process.env.REACT_APP_EMAILJS_SERVICE_ID,
-            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-            form.current,
-            process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-          );
           setSubmitted(true);
           form.current.reset();
         } else {

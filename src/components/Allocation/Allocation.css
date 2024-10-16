@@ -120,23 +120,3 @@
     max-width: 300px;
   }
 }
-
-@media (min-width: 1024px) {
-  .allocation-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .toggle-chart-btn {
-    display: none;
-  }
-
-  .pie-chart {
-    display: block;
-    margin: 0;
-  }
-
-  .fund-details {
-    width: 60%;
-  }
-}

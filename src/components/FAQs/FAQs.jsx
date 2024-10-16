@@ -33,7 +33,7 @@ const FAQs = () => {
             <div
               className="faq-answer"
               style={{
-                maxHeight: expandedIndex === index ? '200px' : '0',
+                maxHeight: expandedIndex === index ? '900px' : '0',
                 transition: 'max-height 0.3s ease',
               }}
             >

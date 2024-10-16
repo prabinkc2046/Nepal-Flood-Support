@@ -1,3 +1,4 @@
+import { scrollToSection } from '../components/utils/scrollToSection';
 export const faqs = [
   {
     question: 'What is the purpose of this fundraising project?',
@@ -11,8 +12,13 @@ export const faqs = [
   },
   {
     question: 'Is my donation tax-deductible?',
-    answer:
-      'No, donations to this project are not tax-deductible. For any further questions, feel free to contact us at pkmiracle36@gmail.com.',
+    answer: (
+      <>
+        No, donations to this project are not tax-deductible. For any further
+        questions, feel free to contact us.{' '}
+        <button onClick={() => scrollToSection('contact')}>Contact</button>
+      </>
+    ),
   },
   {
     question: 'How is the raised money being used?',
@@ -21,7 +27,10 @@ export const faqs = [
         The funds will be used to meet immediate needs such as food, water, and
         blankets for displaced families. Depending on the amount raised, we may
         also contribute towards rebuilding homes for those affected by the
-        floods. To know more, please visit this section <h4>Transparency</h4>
+        floods. To know more, please visit this section{' '}
+        <button onClick={() => scrollToSection('transparency')}>
+          Transparency
+        </button>
       </>
     ),
   },
@@ -41,8 +50,9 @@ export const faqs = [
     answer: (
       <>
         Yes, we will send you an email with links to our website, where you can
-        view detailed updates on how the funds are being utilized. You will find
-        this information under the <h4>Update</h4> section.
+        view detailed updates on how the funds are being utilized. Please visit
+        this page{' '}
+        <button onClick={() => scrollToSection('updates')}>Updates</button>
       </>
     ),
   },
@@ -51,13 +61,9 @@ export const faqs = [
     answer: (
       <>
         Visit the{' '}
-        <a
-          href="https://nepal-flood-support.vercel.app/#get-involved"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <button onClick={() => scrollToSection('involved')}>
           Get Involved
-        </a>{' '}
+        </button>
         section on our website, where you can copy the donation link to share.
         You can also post it on any popular platform like Facebook, LinkedIn, or
         WhatsApp to help us reach more people.
@@ -84,7 +90,12 @@ export const faqs = [
   },
   {
     question: 'Who can I contact for more information?',
-    answer:
-      'For more information, you can contact us via email at pkmiracle36@gmail.com.',
+    answer: (
+      <>
+        Please visit{' '}
+        <button onClick={() => scrollToSection('contact')}>Contact</button> to
+        contact us.
+      </>
+    ),
   },
 ];
