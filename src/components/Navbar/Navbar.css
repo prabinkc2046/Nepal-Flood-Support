@@ -68,6 +68,8 @@
   right: 0;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden; /* Ensure no horizontal scroll */
+
   background-color: rgba(0, 0, 0, 0.9);
   display: none;
   flex-direction: column;
@@ -83,8 +85,8 @@
   display: flex;
 }
 
-.nav-menu.active body {
-  overflow-y: hidden;
+body.menu-active {
+  overflow: hidden;
 }
 
 /* Ensure logo and menu stay on top in the open state */
