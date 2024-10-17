@@ -59,11 +59,6 @@ const Acknowledge = () => {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
-        if (!csrfToken) {
-          toast.error('CSRF token not available');
-          return;
-        }
-
         const response = await axios.post(`${apiUrl}/add_donor`, donorData, {
           headers: {
             'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
