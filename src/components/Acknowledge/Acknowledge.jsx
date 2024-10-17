@@ -3,13 +3,16 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
 import './Acknowledge.css'; // Custom CSS for styling
+import { useCsrfToken } from '../utils/useCsrfToken';
 
 const Acknowledge = () => {
   const form = useRef();
   const [submitted, setSubmitted] = useState(false);
   const [publishName, setPublishName] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [csrfToken, setCsrfToken] = useState('');
+  // const [csrfToken, setCsrfToken] = useState('');
+
+  const { data: csrfToken, isLoading, isError, error } = useCsrfToken(); // Use React Query
 
   const handleToggle = () => {
     setPublishName(prevState => !prevState);
@@ -20,21 +23,21 @@ const Acknowledge = () => {
   };
 
   // Fetch CSRF token from the API on component mount
-  useEffect(() => {
-    const fetchCsrfToken = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/csrf_token`,
-          { withCredentials: true } // Ensure cookies are included
-        );
-        setCsrfToken(response.data.csrfToken);
-      } catch (error) {
-        toast.error('Failed to fetch CSRF token.');
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCsrfToken = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${process.env.REACT_APP_API_URL}/csrf_token`,
+  //         { withCredentials: true } // Ensure cookies are included
+  //       );
+  //       setCsrfToken(response.data.csrfToken);
+  //     } catch (error) {
+  //       toast.error('Failed to fetch CSRF token.');
+  //     }
+  //   };
 
-    fetchCsrfToken();
-  }, []);
+  //   fetchCsrfToken();
+  // }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -58,6 +61,11 @@ const Acknowledge = () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
+
+        if (!csrfToken) {
+          toast.error('CSRF token not available');
+          return;
+        }
 
         const response = await axios.post(`${apiUrl}/add_donor`, donorData, {
           headers: {

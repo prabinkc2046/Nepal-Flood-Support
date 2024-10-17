@@ -13,7 +13,7 @@ const NavBar = () => {
   // Toggle menu open/close
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    document.body.classList.toggle('menu-active', !isOpen);
+    // document.body.classList.toggle('menu-active', !isOpen);
   };
 
   // Close menu on item click
