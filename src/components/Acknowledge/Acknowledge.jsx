@@ -24,9 +24,10 @@ const Acknowledge = () => {
     const fetchCsrfToken = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/csrf-token`
+          `${process.env.REACT_APP_API_URL}/csrf_token`,
+          { withCredentials: true } // Ensure cookies are included
         );
-        setCsrfToken(response.data.csrfToken); // Assuming your API returns the token in this format
+        setCsrfToken(response.data.csrfToken);
       } catch (error) {
         toast.error('Failed to fetch CSRF token.');
       }
@@ -41,7 +42,7 @@ const Acknowledge = () => {
 
     if (form.current) {
       const formData = new FormData(form.current);
-      const amountDonated = parseFloat(formData.get('amount_donated')); // Get the recent donation amount
+      const amountDonated = parseFloat(formData.get('amount_donated'));
 
       const donorData = {
         first_name: formData.get('first_name'),
@@ -58,17 +59,15 @@ const Acknowledge = () => {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
-        // Include the CSRF token in the headers
         const response = await axios.post(`${apiUrl}/add_donor`, donorData, {
           headers: {
             'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
           },
+          withCredentials: true, // Ensure cookies are included in the request
         });
 
         if (response.status === 200) {
-          // Call the Render backend email API to send email
           await axios.post(`${emailApiUrl}/send-email`, donorData);
-
           setSubmitted(true);
           form.current.reset();
         } else {
