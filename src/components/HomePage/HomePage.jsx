@@ -38,7 +38,12 @@ const HomePage = () => {
         {!isVideoPlaying ? (
           <div className="video-thumbnail rounded-corner">
             <img
-              src={`${process.env.PUBLIC_URL}/assets/villageUnderWater.webp`}
+              src={`${process.env.PUBLIC_URL}/assets/theme/villageUnderWater-small.webp`}
+              srcSet={`
+              ${process.env.PUBLIC_URL}/assets/theme/villageUnderWater-small.webp 600w,
+              ${process.env.PUBLIC_URL}/assets/theme/villageUnderWater-medium-large.webp 1024w
+              `}
+              sizes="(max-width: 600px) 600px, 1024px"
               alt="Flood in Nepal"
               className="theme-image"
             />

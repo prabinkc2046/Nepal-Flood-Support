@@ -31,27 +31,27 @@ export const allocationData = {
     {
       label: 'Rice',
       percentage: '32.96%',
-      imgSrc: '/assets/life-sustenances/rice.webp',
+      imgSrc: '/assets/life-sustenances/rice-small.webp',
     },
     {
       label: 'Lentils',
       percentage: '48.38%',
-      imgSrc: '/assets/life-sustenances/lentils.webp',
+      imgSrc: '/assets/life-sustenances/lentils-small.webp',
     },
     {
       label: 'Cooking Oil',
       percentage: '9.16%',
-      imgSrc: '/assets/life-sustenances/oil.webp',
+      imgSrc: '/assets/life-sustenances/oil-small.webp',
     },
     {
       label: 'Water',
       percentage: '5.86%',
-      imgSrc: '/assets/life-sustenances/water.webp',
+      imgSrc: '/assets/life-sustenances/water-small.webp',
     },
     {
       label: 'Salt & Spices',
       percentage: '3.67%',
-      imgSrc: '/assets/life-sustenances/salt.webp',
+      imgSrc: '/assets/life-sustenances/salt-small.webp',
     },
   ],
 };

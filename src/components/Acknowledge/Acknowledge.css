@@ -1,8 +1,3 @@
-/* Form Container */
-.form-container {
-  width: 100%;
-}
-
 /* Form Group Styling */
 .donation-form .form-group {
   margin-bottom: 15px;
@@ -114,65 +109,33 @@
 }
 
 .thank-you-message {
-  margin: 20px;
-  background-image: url('../../../public/assets/people/littleCuteGirl.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-}
-
-.thank-you-message .overlay-top {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 10px 20px;
+  margin-top: 40px;
+  padding: 30px;
+  background-color: #e0f7fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.thank-you-message .overlay-bottom {
-  background-color: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 10px 20px;
+.thank-you-message h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.thank-you-message .overlay-bottom p {
-  color: #fff;
+.thank-you-message p {
+  font-size: 1.1rem;
+  color: #555;
 }
 
-.thank-you-message .overlay-top h2 {
-  color: #fff;
+/* Thank You Image Styling */
+.thank-you-image img {
+  max-width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 
-/* Default - Mobile */
-@media (max-width: 768px) {
-  .donation-info,
-  .donation-form,
-  .thank-you-message {
-    padding: 15px;
-    width: 100%;
-  }
-
-  .form-group.toggle-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .donation-form button[type='submit'] {
-    width: 100%;
-  }
-}
-
-/* Larger screens - Desktop */
+/* Media Queries for Responsive Design */
 @media (min-width: 768px) {
   .donation-form {
     display: grid;
@@ -180,18 +143,15 @@
     grid-gap: 20px;
   }
 
-  /* Group "First Name", "Last Name", "Email" together in first column */
-  .donation-form .first-column {
-    grid-column: 1;
-  }
-
-  /* Group "Message" and toggle in the second column */
-  .donation-form .second-column {
-    grid-column: 2;
+  .donation-form .form-group {
+    margin-bottom: 0; /* Remove margin for a cleaner look */
   }
 
   /* Stretch submit button across both columns */
   .donation-form button[type='submit'] {
     grid-column: span 2;
+  }
+  .thank-you-message h2 {
+    font-size: 2rem;
   }
 }

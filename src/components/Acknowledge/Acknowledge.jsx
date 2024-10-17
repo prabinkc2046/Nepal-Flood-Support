@@ -159,7 +159,13 @@ const Acknowledge = () => {
             <div className="overlay-top">
               <h2>Thank You for Your Donation!</h2>
             </div>
-
+            <div className="thank-you-image">
+              <img
+                src="/assets/people/cuteLittleGirl/cuteLittleGirlx150.webp"
+                alt="Thank you background"
+                className="thank-you-img"
+              />
+            </div>
             <div className="overlay-bottom">
               <p>
                 We have received your details successfully. We appreciate your

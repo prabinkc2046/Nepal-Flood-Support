@@ -32,8 +32,6 @@
 
 .navbar-logo {
   display: flex;
-  min-width: 350px;
-  width: 40%;
   display: flex;
   align-items: center;
   gap: 5px;

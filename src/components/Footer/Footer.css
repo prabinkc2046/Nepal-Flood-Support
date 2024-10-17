@@ -1,9 +1,9 @@
 .footer {
-  background-color: #333; /* Dark background */
   color: #fff; /* White text for contrast */
   width: 100%;
   padding: 20px 0; /* Padding for space around content */
   margin-top: 40px;
+  background-color: #222; /* Dark background for contrast */
 }
 
 .footer-container {
@@ -43,6 +43,7 @@
   margin-bottom: 10px; /* Spacing under the logo */
 }
 
+/* Updated footer links for better styling */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -61,9 +62,12 @@
   color: #0077be; /* A water-like blue for hover effect */
 }
 
-.footer-bottom p {
+.footer-bottom {
   margin-top: 20px;
   text-align: center;
+}
+
+.footer-bottom p {
   font-size: 0.9rem;
   color: #ccc; /* Lighter text for footer-bottom */
 }
@@ -84,5 +88,24 @@
 
   .footer-links {
     justify-content: flex-start;
+  }
+}
+
+/* Responsive image sizes for the logo */
+@media (max-width: 600px) {
+  .footer-logo .logo {
+    width: 80px; /* Smaller logo size for mobile */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .footer-logo .logo {
+    width: 100px; /* Medium logo size for tablets */
+  }
+}
+
+@media (min-width: 769px) {
+  .footer-logo .logo {
+    width: 120px; /* Larger logo size for desktops */
   }
 }

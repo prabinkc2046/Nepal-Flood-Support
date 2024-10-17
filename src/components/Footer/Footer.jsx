@@ -8,7 +8,7 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-logo">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo-small.png"
               alt="FloodAid Nepal Logo"
               className="logo"
             />

@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for https://nepal-flood-support.vercel.app
+
 User-agent: *
 Disallow:
+
+Sitemap: https://nepal-flood-support.vercel.app/sitemap.xml

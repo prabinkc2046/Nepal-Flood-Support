@@ -43,8 +43,9 @@ const About = () => {
                 by the floods.
               </p>
             </div>
+
             <img
-              src={`${process.env.PUBLIC_URL}/assets/foodWater.webp`}
+              src={`${process.env.PUBLIC_URL}/assets/mission/foodWater/foodWater.webp`}
               alt="Food and Water Distribution"
               className="goal-image"
             />
@@ -59,7 +60,7 @@ const About = () => {
               </p>
             </div>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/winterClothes.webp`}
+              src={`${process.env.PUBLIC_URL}/assets/mission/winterClothes/winterClothes.webp`}
               alt="Warm Clothing Distribution"
               className="goal-image"
             />
@@ -74,7 +75,7 @@ const About = () => {
               </p>
             </div>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/homeRebuilding.webp`}
+              src={`${process.env.PUBLIC_URL}/assets/mission/homeRebuilding/homeRebuilding.webp`}
               alt="Rebuilding Homes"
               className="goal-image"
             />

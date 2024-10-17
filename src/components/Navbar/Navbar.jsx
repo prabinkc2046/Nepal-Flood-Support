@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { navItems } from '../../Constants/navItems';
 import './Navbar.css';
 
 const NavBar = () => {
@@ -54,75 +55,6 @@ const NavBar = () => {
     };
   }, []);
 
-  const navItems = [
-    {
-      id: 'home',
-      name: 'Home',
-      description: 'Welcome to our platform',
-      image: 'home.webp',
-    },
-    {
-      id: 'aim',
-      name: 'Our Mission',
-      description: 'Our vision and goals',
-      image: 'aim.webp',
-    },
-    {
-      id: 'allocation',
-      name: 'Fund Allocation',
-      description: 'How we allocate funds',
-      image: 'allocation.webp',
-    },
-    {
-      id: 'transparency',
-      name: 'Transparency',
-      description: 'Our transparent operations',
-      image: 'transparency.webp',
-    },
-    {
-      id: 'give',
-      name: 'Donate',
-      description: 'Support our cause',
-      image: 'donate.webp',
-    },
-    {
-      id: 'let us thank you',
-      name: 'Thank You',
-      description: 'Let us appreciate you',
-      image: 'thankyou.webp',
-    },
-    {
-      id: 'involved',
-      name: 'Get Involved',
-      description: 'Join our efforts',
-      image: 'involved.webp',
-    },
-    {
-      id: 'contributor',
-      name: 'Contributors',
-      description: 'Meet our supporters',
-      image: 'contributors.webp',
-    },
-    {
-      id: 'updates',
-      name: 'Latest Updates',
-      description: 'Stay informed',
-      image: 'updates.webp',
-    },
-    {
-      id: 'faqs',
-      name: 'FAQs',
-      description: 'Your questions answered',
-      image: 'faqs.webp',
-    },
-    {
-      id: 'contact',
-      name: 'Contact',
-      description: 'Get in touch',
-      image: 'contact.webp',
-    },
-  ];
-
   return (
     <nav className="navbar">
       <div
@@ -132,7 +64,11 @@ const NavBar = () => {
       >
         {/* Logo with name */}
         <div className="navbar-logo">
-          <img src="/assets/logo.png" alt="FloodAid Nepal" className="logo" />
+          <img
+            src="/assets/logo-small.png"
+            alt="FloodAid Nepal"
+            className="logo"
+          />
           <h3 className={`logo-name ${isOpen ? 'active' : ''}`}>
             FloodAid Nepal
           </h3>
