@@ -1,0 +1,12 @@
+.copy-button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+}
+
+.copy-button:hover {
+  background-color: #1a6a92; /* Darker shade on hover */
+}
