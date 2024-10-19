@@ -97,9 +97,11 @@ const About = () => {
               href="https://beershebaschool.edu.np/"
               target="_blank"
               rel="noopener noreferrer"
+              className="source-link"
             >
-              Beersheba National School
-            </a>
+              Beersheba National Secondary School situated at Nagarjun
+              Municipality, Ward no - 6, Ichadole, Kathmandu, Nepal{' '}
+            </a>{' '}
             , a trusted institution in Kathmandu, dedicated to helping the
             community recover.
           </p>
