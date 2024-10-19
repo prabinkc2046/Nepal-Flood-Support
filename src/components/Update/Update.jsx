@@ -79,7 +79,7 @@ const Update = () => {
           <>
             <p className="fund-description">
               We're raising funds to support flood-affected families in Nepal.
-              So far, we've raised ${totalRaised} of our $5000 goal!
+              So far, we've raised ${totalRaised} of our $${goal} goal!
             </p>
 
             {/* Progress bar */}
