@@ -46,6 +46,9 @@ function Footer() {
             <a href="#contact" className="footer-link">
               Contact
             </a>
+            <a href="#privacy" className="footer-link">
+              Privacy Policy
+            </a>
           </div>
         </div>
 

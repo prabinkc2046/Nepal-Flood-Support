@@ -15,6 +15,7 @@ import FAQs from './components/FAQs/FAQs';
 import Footer from './components/Footer/Footer';
 import Transparency from './components/Transparency/Transparency';
 import Acknowledge from './components/Acknowledge/Acknowledge';
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <FAQs />
         <Contact />
       </div>
+      <PrivacyPolicy />
       <Footer />
     </>
   );
