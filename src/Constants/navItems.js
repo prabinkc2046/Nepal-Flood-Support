@@ -1,7 +1,7 @@
 export const navItems = [
   {
     id: 'home',
-    name: 'Home',
+    name: 'Overview',
     description: 'Welcome to our platform',
     image: 'homex300.webp',
   },
@@ -20,37 +20,37 @@ export const navItems = [
   {
     id: 'transparency',
     name: 'Transparency',
-    description: 'Our transparent operations',
+    description: 'See how we operate transparently.',
     image: 'transparencyx300.webp',
   },
   {
     id: 'give',
     name: 'Donate',
-    description: 'Support our cause',
+    description: 'Help flood victims in Nepal',
     image: 'donatex300.webp',
   },
   {
     id: 'let us thank you',
     name: 'Thank You',
-    description: 'Let us appreciate you',
+    description: 'Complete the form to help us acknowledge your donation.',
     image: 'thankyoux300.webp',
   },
   {
     id: 'involved',
-    name: 'Get Involved',
-    description: 'Join our efforts',
+    name: 'Share our cause',
+    description: 'Share our cause with friends and family.',
     image: 'involvedx300.webp',
   },
   {
     id: 'contributor',
-    name: 'Contributors',
-    description: 'Meet our supporters',
+    name: 'Testimonials',
+    description: 'Testimonials from our valued supporters.',
     image: 'contributorsx300.webp',
   },
   {
     id: 'updates',
     name: 'Latest Updates',
-    description: 'Stay informed',
+    description: "News on our progress, goals, and those we've helped.",
     image: 'updatesx300.webp',
   },
   {
@@ -62,7 +62,7 @@ export const navItems = [
   {
     id: 'contact',
     name: 'Contact',
-    description: 'Get in touch',
+    description: 'Meet the organizers and reach out to us.',
     image: 'contactx300.webp',
   },
 ];
