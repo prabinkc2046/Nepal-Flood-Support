@@ -1,0 +1,12 @@
+.policy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* List Styles */
+.no-bullets {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin-left: 0; /* No indentation */
+}
