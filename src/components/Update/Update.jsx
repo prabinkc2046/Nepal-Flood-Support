@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import { latestNews } from '../../Constants/latestNews';
 import { goal } from '../../Constants/goal';
@@ -24,7 +24,10 @@ const Update = () => {
     useContributors();
 
   // Calculate the progress percentage
-  const progressPercentage = (totalRaised / goal) * 100;
+  const progressPercentage = useMemo(
+    () => (totalRaised / goal) * 100,
+    [totalRaised]
+  );
 
   // Visibility change handler
   const onVisibilityChange = isVisible => {
