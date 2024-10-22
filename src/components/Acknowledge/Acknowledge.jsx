@@ -59,7 +59,7 @@ const Acknowledge = () => {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
-        // Use Promise.all to ensure both API requests are finished before setting isSubmitting to false
+        // Make the API calls and ensure both succeed before showing the thank you message
         const responses = await Promise.all([
           axios.post(`${apiUrl}/add_donor`, donorData, {
             headers: {
@@ -76,8 +76,8 @@ const Acknowledge = () => {
           addDonorResponse.status === 200 &&
           sendEmailResponse.status === 200
         ) {
-          setSubmitted(true);
-          form.current.reset();
+          setSubmitted(true); // Show thank-you message only after success
+          form.current.reset(); // Reset the form
         } else {
           toast.error('Something went wrong! Please try again.');
         }
@@ -90,8 +90,7 @@ const Acknowledge = () => {
           );
         }
       } finally {
-        // This will now only execute after both API requests have completed
-        setIsSubmitting(false); // <-- Updated: Only set isSubmitting to false after both API calls are done
+        setIsSubmitting(false); // After API calls finish, set submitting state to false
       }
     }
   };
