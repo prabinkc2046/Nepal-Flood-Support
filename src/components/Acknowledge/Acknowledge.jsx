@@ -167,7 +167,7 @@ const Acknowledge = () => {
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
-                <Spinner text="Submitting... please wait" />
+                <Spinner text="Submitting... this might take a moment" />
               </>
             ) : (
               'Submit Your Details'
