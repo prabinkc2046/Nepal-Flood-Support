@@ -59,25 +59,29 @@ const Acknowledge = () => {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
-        // Make the API calls and ensure both succeed before showing the thank you message
-        const responses = await Promise.all([
-          axios.post(`${apiUrl}/add_donor`, donorData, {
+        // Add donor to the database first
+        const addDonorResponse = await axios.post(
+          `${apiUrl}/add_donor`,
+          donorData,
+          {
             headers: {
               'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
             },
             withCredentials: true, // Ensure cookies are included in the request
-          }),
-          axios.post(`${emailApiUrl}/send-email`, donorData),
-        ]);
+          }
+        );
 
-        const [addDonorResponse, sendEmailResponse] = responses;
-
-        if (
-          addDonorResponse.status === 200 &&
-          sendEmailResponse.status === 200
-        ) {
-          setSubmitted(true); // Show thank-you message only after success
+        if (addDonorResponse.status === 200) {
+          setSubmitted(true); // Show thank-you message immediately after adding donor
           form.current.reset(); // Reset the form
+
+          // Now send the email asynchronously in the background
+          axios.post(`${emailApiUrl}/send-email`, donorData).catch(error => {
+            console.error('Failed to send email:', error);
+            toast.error(
+              'Failed to send thank-you email, but your donation was recorded.'
+            );
+          });
         } else {
           toast.error('Something went wrong! Please try again.');
         }
@@ -90,7 +94,7 @@ const Acknowledge = () => {
           );
         }
       } finally {
-        setIsSubmitting(false); // After API calls finish, set submitting state to false
+        setIsSubmitting(false); // After the donor is added, stop the spinner
       }
     }
   };
