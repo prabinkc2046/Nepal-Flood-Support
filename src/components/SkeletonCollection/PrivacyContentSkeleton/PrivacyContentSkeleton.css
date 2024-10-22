@@ -1,0 +1,23 @@
+.skeleton-policy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeleton-card {
+  height: 100px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-heading {
+  height: 40px;
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-card {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 400% 100%;
+}

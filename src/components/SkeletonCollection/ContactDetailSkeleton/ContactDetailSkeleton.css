@@ -1,0 +1,82 @@
+.contact-skeleton-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.contact-details-skeleton.card {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f7f7f7;
+}
+
+.contact-item-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.contact-item-skeleton .icon-skeleton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.contact-item-skeleton .text-skeleton {
+  width: 150px;
+  height: 15px;
+  background-color: #ddd;
+  border-radius: 4px;
+}
+
+.contact-form-container-skeleton.card {
+  margin-top: 20px;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f7f7f7;
+}
+
+.contact-form-container-skeleton .form-header-skeleton {
+  width: 150px;
+  height: 25px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.contact-form-container-skeleton .input-skeleton {
+  width: 100%;
+  height: 40px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.contact-form-container-skeleton .textarea-skeleton {
+  width: 100%;
+  height: 80px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.contact-form-container-skeleton .button-skeleton {
+  width: 100px;
+  height: 40px;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Animation for loading effect */
+
+/* Applying animation to all skeleton elements */
+.contact-item-skeleton .icon-skeleton,
+.contact-item-skeleton .text-skeleton,
+.contact-form-container-skeleton .form-header-skeleton,
+.contact-form-container-skeleton .input-skeleton,
+.contact-form-container-skeleton .textarea-skeleton,
+.contact-form-container-skeleton .button-skeleton {
+  animation: contact-skeleton-loading 1.5s infinite ease-in-out;
+}

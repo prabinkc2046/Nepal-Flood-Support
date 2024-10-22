@@ -165,6 +165,27 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+@keyframes contact-skeleton-loading {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}
+
 /* Media queries for tablet (min-width: 768px) */
 @media (min-width: 768px) {
   .donate-button {
