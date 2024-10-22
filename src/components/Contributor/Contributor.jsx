@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './Contributor.css';
 import ContributorModal from '../Modal/ContributorModal/ContributorModal';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -58,7 +58,10 @@ const Contributor = () => {
     }
   };
 
-  const sortedContributors = sortContributors(sortCriteria);
+  const sortedContributors = useMemo(
+    () => sortContributors(sortCriteria),
+    [sortCriteria, contributors]
+  );
 
   const openModal = contributor => {
     setSelectedContributor(contributor);
