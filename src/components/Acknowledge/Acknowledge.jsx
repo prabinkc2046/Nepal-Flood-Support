@@ -29,7 +29,7 @@ const Acknowledge = () => {
         );
         setCsrfToken(response.data.csrfToken);
       } catch (error) {
-        toast.error('Failed to fetch CSRF token.');
+        console.error('Failed to fetch CSRF token.');
       }
     };
 
@@ -59,15 +59,23 @@ const Acknowledge = () => {
         const apiUrl = process.env.REACT_APP_API_URL;
         const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
-        const response = await axios.post(`${apiUrl}/add_donor`, donorData, {
-          headers: {
-            'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
-          },
-          withCredentials: true, // Ensure cookies are included in the request
-        });
+        // Use Promise.all to ensure both API requests are finished before setting isSubmitting to false
+        const responses = await Promise.all([
+          axios.post(`${apiUrl}/add_donor`, donorData, {
+            headers: {
+              'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
+            },
+            withCredentials: true, // Ensure cookies are included in the request
+          }),
+          axios.post(`${emailApiUrl}/send-email`, donorData),
+        ]);
 
-        if (response.status === 200) {
-          await axios.post(`${emailApiUrl}/send-email`, donorData);
+        const [addDonorResponse, sendEmailResponse] = responses;
+
+        if (
+          addDonorResponse.status === 200 &&
+          sendEmailResponse.status === 200
+        ) {
           setSubmitted(true);
           form.current.reset();
         } else {
@@ -82,7 +90,8 @@ const Acknowledge = () => {
           );
         }
       } finally {
-        setIsSubmitting(false);
+        // This will now only execute after both API requests have completed
+        setIsSubmitting(false); // <-- Updated: Only set isSubmitting to false after both API calls are done
       }
     }
   };
