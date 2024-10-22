@@ -1,5 +1,5 @@
 // CopyButton.js
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
@@ -7,7 +7,6 @@ import './CopyButton.css';
 
 const CopyButton = ({ text }) => {
   const [isCopied, setIsCopied] = useState(false);
-  const textAreaRef = useRef(null); // Optional ref for textarea if needed
 
   const handleCopy = () => {
     try {

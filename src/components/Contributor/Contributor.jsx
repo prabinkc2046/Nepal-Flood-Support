@@ -35,7 +35,7 @@ const Contributor = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   // Use the custom hook
-  const { contributors, loading, refetch, hasUpdated } = useContributors();
+  const { contributors, loading, refetch } = useContributors();
 
   const sortContributors = criteria => {
     switch (criteria) {

@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCirclePlus,
   faCircleMinus,
-  faPeopleCarry,
   faHandsHelping,
 } from '@fortawesome/free-solid-svg-icons';
 import useContributors from '../utils/useContributors';

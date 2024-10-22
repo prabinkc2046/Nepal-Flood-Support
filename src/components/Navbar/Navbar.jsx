@@ -7,13 +7,11 @@ import './Navbar.css';
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [isScrolling, setIsScrolling] = useState(false);
 
   let scrollTimeout = null;
   // Toggle menu open/close
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    // document.body.classList.toggle('menu-active', !isOpen);
   };
 
   // Close menu on item click
@@ -33,12 +31,10 @@ const NavBar = () => {
     }
 
     // Show navbar when scrolling starts
-    setIsScrolling(true);
     setIsVisible(true);
 
     // Hide navbar after 3 seconds of no scrolling
     scrollTimeout = setTimeout(() => {
-      setIsScrolling(false);
       setIsVisible(false);
     }, 3000); // Adjust the time (3 seconds) to suit your preference
   };
@@ -54,7 +50,7 @@ const NavBar = () => {
         clearTimeout(scrollTimeout);
       }
     };
-  }, []);
+  });
 
   return (
     <nav className="navbar">
