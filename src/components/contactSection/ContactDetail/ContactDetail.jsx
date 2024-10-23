@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import Spinner from '../../Spinner/Spinner';
 
 const ContactDetail = ({ isOpen }) => {
-  const [messageStatus, setMessageStatus] = useState(''); // For success/error message
   const [sending, setSending] = useState(false); // For spinner
 
   const contactFormRef = useRef();
@@ -38,7 +37,6 @@ const ContactDetail = ({ isOpen }) => {
     };
 
     setSending(true); // Show spinner
-    setMessageStatus(''); // Clear any previous status messages
 
     try {
       const response = await fetch(
@@ -53,22 +51,16 @@ const ContactDetail = ({ isOpen }) => {
       );
 
       if (response.ok) {
-        setMessageStatus('Message sent successfully!');
         toast.success('Message sent successfully!');
         contactFormRef.current.reset(); // Reset form fields
       } else {
-        setMessageStatus('Failed to send message.');
         toast.error('Failed to send message.');
       }
     } catch (error) {
-      setMessageStatus('Failed to send message. Please try again.');
       toast.error('Failed to send message. Please try again.');
     } finally {
       setSending(false); // Hide spinner
     }
-
-    // Automatically clear the status message after 2 seconds
-    setTimeout(() => setMessageStatus(''), 2000);
   };
 
   return (
@@ -98,15 +90,6 @@ const ContactDetail = ({ isOpen }) => {
             {sending ? <Spinner text="Sending ..." /> : 'Send Message'}
           </button>
         </form>
-        {messageStatus && (
-          <p
-            className={`message-status ${
-              messageStatus.includes('successfully') ? 'success' : 'error'
-            }`}
-          >
-            {messageStatus}
-          </p>
-        )}
       </div>
     </div>
   );
