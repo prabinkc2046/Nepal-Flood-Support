@@ -2,9 +2,10 @@ import React, { useState, useMemo, useCallback } from 'react';
 import './Contributor.css';
 import ContributorModal from '../Modal/ContributorModal/ContributorModal';
 import ContributorSkeleton from '../SkeletonCollection/ContributorSkeleton/ContributorSkeleton';
-import { fetchDonors } from '../utils/fetchDonors';
+// import { fetchDonors } from '../utils/fetchDonors';
 import { timeSince } from '../utils/timeSince';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
+import useDonors from '../utils/useDonor';
 import { capitalizeFirstLetter } from '../utils/capitaliseFirstLetter';
 
 const Contributor = () => {
@@ -12,21 +13,23 @@ const Contributor = () => {
   const [selectedContributor, setSelectedContributor] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const {
-    data: contributors = [],
-    isLoading,
-    isError,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: ['donors'],
-    queryFn: fetchDonors,
-    refetchOnMount: true,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
-    staleTime: 5 * 60 * 1000,
-    refetchInterval: 2 * 60 * 1000,
-  });
+  // const {
+  //   data: contributors = [],
+  //   isLoading,
+  //   isError,
+  //   error,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ['donors'],
+  //   queryFn: fetchDonors,
+  //   refetchOnMount: true,
+  //   refetchOnReconnect: true,
+  //   refetchOnWindowFocus: true,
+  //   staleTime: 5 * 60 * 1000,
+  //   refetchInterval: 2 * 60 * 1000,
+  // });
+
+  const { contributors, isLoading, isError, error, refetch } = useDonors();
 
   const sortContributors = useCallback(
     criteria => {
