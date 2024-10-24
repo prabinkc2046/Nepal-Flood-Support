@@ -110,6 +110,37 @@
   font-size: 0.95rem;
 }
 
+.error {
+  background-color: #f8d7da; /* Light red background */
+  color: #721c24; /* Dark red text */
+  border: 1px solid #f5c6cb; /* Light red border */
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.error p {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+}
+
+.error button {
+  background-color: #f5c6cb; /* Light red button */
+  color: #721c24;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.error button:hover {
+  background-color: #f1b0b7; /* Darker shade of red on hover */
+}
+
 /* Mobile-first styling */
 @media (min-width: 768px) {
   .contributor-navbar {
