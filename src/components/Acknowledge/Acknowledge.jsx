@@ -3,8 +3,10 @@ import Spinner from '../Spinner/Spinner';
 import useCsrfToken from '../utils/useCsrfToken';
 import useAddDonorMutation from '../utils/useAddDonorMutation';
 import './Acknowledge.css'; // Custom CSS for styling
+import sendThankYouEmail from '../utils/sendThankYouEmail.js';
 
 const Acknowledge = () => {
+  const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
   const form = useRef();
   const [publishName, setPublishName] = useState(false);
 
@@ -46,6 +48,7 @@ const Acknowledge = () => {
       try {
         // Call mutation to add donor
         addDonorMutation.mutate(donorData);
+        sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
         console.error('Error during form submission:');
       }
