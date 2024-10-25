@@ -54,11 +54,12 @@ const useAddDonorMutation = (csrfToken, formRef) => {
       if (formRef.current) formRef.current.reset();
 
       // Send the thank you email after successful donor addition
-      try {
-        sendThankYouEmail(newDonorData, emailApiUrl);
-      } catch (emailError) {
-        toast.error('Failed to send thank you email.');
-      }
+      sendThankYouEmail(newDonorData, emailApiUrl);
+      // try {
+      //   sendThankYouEmail(newDonorData, emailApiUrl);
+      // } catch (error) {
+      //   toast.error('Failed to send thank you email.');
+      // }
     },
 
     onError: error => {
