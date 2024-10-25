@@ -12,7 +12,6 @@ const Contributor = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const { contributors, isLoading, isError, error, refetch } = useDonors();
-  console.log(contributors);
   const sortContributors = useCallback(
     criteria => {
       switch (criteria) {
