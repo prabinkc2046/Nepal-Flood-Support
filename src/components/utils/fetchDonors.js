@@ -12,15 +12,12 @@ export const fetchDonors = async () => {
       const errorMessage = `Error ${error.response.status}: ${
         error.response.data.message || 'Failed to fetch donors'
       }`;
-      console.error(errorMessage);
       throw new Error(errorMessage);
     } else if (error.request) {
       // Request was made but no response was received
-      console.error('No response received from the server');
       throw new Error('Please check your network connection');
     } else {
       // something else caused error
-      console.error('Error:', error.message);
       throw new Error('An unexpected error occurred. Please try again.');
     }
   }

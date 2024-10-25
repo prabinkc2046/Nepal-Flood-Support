@@ -47,11 +47,7 @@ const Acknowledge = () => {
 
       try {
         // Call mutation to add donor
-        addDonorMutation.mutate(donorData, {
-          onError: error => {
-            console.error('Error adding donor:', error);
-          },
-        });
+        addDonorMutation.mutate(donorData);
         await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
         console.error('Error during form submission:', error);
@@ -154,6 +150,12 @@ const Acknowledge = () => {
             )}
           </button>
         </form>
+
+        {addDonorMutation.isError && (
+          <div className="error">
+            <p>{addDonorMutation.error.message}</p>
+          </div>
+        )}
 
         {addDonorMutation.isSuccess && (
           <div className="thank-you-message card">

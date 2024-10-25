@@ -9,14 +9,32 @@ const useAddDonorMutation = (csrfToken, formRef) => {
   const queryClient = useQueryClient();
 
   const addNewDonor = async newDonorData => {
-    const response = await axios.post(`${apiUrl}/add_donor`, newDonorData, {
-      headers: {
-        'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
-      },
-      withCredentials: true, // Ensure cookies are included in the request
-    });
+    try {
+      const response = await axios.post(`${apiUrl}/add_donor`, newDonorData, {
+        headers: {
+          'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
+        },
+        withCredentials: true, // Ensure cookies are included in the request
+      });
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status code out of the 2xx range
+        const errorMessage = `Error ${error.response.status}: ${
+          error.response.data.message || 'Failed to submit donor detail'
+        }`;
+        throw new Error(errorMessage);
+      } else if (error.request) {
+        // Request was made but no response received
+        throw new Error(
+          'No response from server. Please check your network connection.'
+        );
+      } else {
+        // Something else caused the error
+        throw new Error('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   const addDonorMutation = useMutation({
@@ -35,8 +53,8 @@ const useAddDonorMutation = (csrfToken, formRef) => {
     },
 
     onError: error => {
-      if (error.response && error.response.data.detail) {
-        toast.error(error.response.data.detail);
+      if (error.message) {
+        toast.error(error.message);
       } else {
         toast.error(
           'Failed to submit your donation details. Please try again later.'
