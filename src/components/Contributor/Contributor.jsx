@@ -15,8 +15,8 @@ const Contributor = () => {
   const sortContributors = useCallback(
     criteria => {
       switch (criteria) {
-        case 'topContributor':
-          return [...contributors].sort((a, b) => b.amount - a.amount);
+        case 'default':
+          return [...contributors].sort((a, b) => a.amount - b.amount);
         case 'mostFrequent':
           return [...contributors].sort(
             (a, b) => b.contributionsCount - a.contributionsCount
@@ -29,12 +29,14 @@ const Contributor = () => {
           return [...contributors].sort(
             (a, b) => new Date(b.date) - new Date(a.date)
           );
+        case 'lowestToHighest':
+          return [...contributors].sort((a, b) => a.amount - b.amount);
         default:
           return contributors;
       }
     },
     [contributors]
-  ); // Memoize based on the contributors array
+  );
 
   const sortedContributors = useMemo(
     () => sortContributors(sortCriteria),
