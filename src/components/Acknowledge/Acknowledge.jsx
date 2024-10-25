@@ -7,7 +7,6 @@ import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
   const form = useRef();
-  const [submitted, setSubmitted] = useState(false);
   const [publishName, setPublishName] = useState(false);
   const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
@@ -19,7 +18,7 @@ const Acknowledge = () => {
     isLoading: isTokenLoading,
   } = useCsrfToken();
 
-  const addDonorMutation = useAddDonorMutation(csrfToken, form, setSubmitted);
+  const addDonorMutation = useAddDonorMutation(csrfToken, form);
   const handleToggle = () => {
     setPublishName(prevState => !prevState);
   };
@@ -47,11 +46,15 @@ const Acknowledge = () => {
       };
 
       try {
-        // call mutation to add donor
-        addDonorMutation.mutate(donorData);
-        // await sendThankYouEmail(donorData, emailApiUrl);
+        // Call mutation to add donor
+        addDonorMutation.mutate(donorData, {
+          onError: error => {
+            console.error('Error adding donor:', error);
+          },
+        });
+        await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
-        console.error(error);
+        console.error('Error during form submission:', error);
       }
     }
   };
