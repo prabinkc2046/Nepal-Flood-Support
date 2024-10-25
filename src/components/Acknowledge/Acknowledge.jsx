@@ -93,7 +93,7 @@ const Acknowledge = () => {
               type="text"
               id="last-name"
               name="last_name"
-              placeholder="Enter your last name"
+              placeholder="Optional"
             />
           </div>
           <div className="form-group">
