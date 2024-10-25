@@ -64,7 +64,11 @@ const Acknowledge = () => {
           your generous support.
         </p>
 
-        {isTokenLoading && <Spinner text="Please wait until token is loaded" />}
+        {isTokenLoading && (
+          <div className="error">
+            <Spinner text="Please wait until token is loaded" />
+          </div>
+        )}
         {isCsrfError && (
           <div className="error">
             <p>{error.message}</p>

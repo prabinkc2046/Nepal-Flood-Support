@@ -7,8 +7,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 export const contacts = {
   personalContact: {
-    name: 'Prabin K C',
-    email: 'pkmiracle36@gmail.com',
+    name: 'Prabin',
+    email: 'nepalfloodrelief@gmail.com',
     phone: '+61473654956',
     linkedin:
       'https://www.linkedin.com/in/experiencedfullstackdeveoperprabinkc/',

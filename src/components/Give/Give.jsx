@@ -37,6 +37,15 @@ const Give = () => {
             </p>
           </p>
         </div>
+
+        <p className="assurance-info">
+          This Macquarie Bank account is a dedicated account set up exclusively
+          for donations to support those affected by floods in Nepal. If you
+          have any concerns or doubts, please do not hesitate to{' '}
+          <a href="mailto:nepalfloodrelief@gmail.com">contact us</a>. Rest
+          assured, your contribution will be securely transferred to the
+          organizer’s account in Nepal to maximize its impact.
+        </p>
         <p className="post-info">
           After completing your bank transfer, kindly click the button below to
           provide your details. This helps us acknowledge your generous donation

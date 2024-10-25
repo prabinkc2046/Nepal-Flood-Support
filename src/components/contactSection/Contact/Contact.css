@@ -42,9 +42,9 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
-  font-size: 1.1em; /* Keep typography readable */
-  font-weight: 500;
+  gap: 5px;
+  font-size: 1rem; /* Keep typography readable */
+  font-weight: 400;
 }
 
 .contact-item:hover {
