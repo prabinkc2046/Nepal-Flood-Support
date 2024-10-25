@@ -47,7 +47,7 @@ const Acknowledge = () => {
 
       try {
         // call mutation to add donor
-        await addDonorMutation.mutateAsync(donorData);
+        addDonorMutation.mutate(donorData);
         await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
         console.error(error);
@@ -140,7 +140,7 @@ const Acknowledge = () => {
               </label>
             </div>
           </div>
-          <button type="submit" disabled={addDonorMutation.isLoading}>
+          <button type="submit" disabled={addDonorMutation.isPending}>
             {addDonorMutation.isPending ? (
               <>
                 <Spinner text="Submitting... this might take a moment" />

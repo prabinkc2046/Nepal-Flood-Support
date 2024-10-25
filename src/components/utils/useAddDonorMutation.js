@@ -22,10 +22,10 @@ const useAddDonorMutation = (csrfToken, formRef) => {
   const addDonorMutation = useMutation({
     mutationFn: newDonorData => addNewDonor(newDonorData),
     // On success, manually update the cache and invalidate it
-    onSuccess: newDonor => {
+    onSuccess: newDonorData => {
       // Manually updating cache with new donor
       queryClient.setQueryData(['donors'], oldDonors =>
-        oldDonors ? [...oldDonors, newDonor] : [newDonor]
+        oldDonors ? [...oldDonors, newDonorData] : [newDonorData]
       );
 
       // Invalidate donors query to refetch the updated data from the server
