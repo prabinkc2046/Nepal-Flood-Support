@@ -1,10 +1,12 @@
 // src/mutations/useAddDonorMutation.js
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import sendThankYouEmail from './sendThankYouEmail';
 import { toast } from 'react-toastify';
 
 const useAddDonorMutation = (csrfToken, formRef) => {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
   const queryClient = useQueryClient();
 
@@ -50,6 +52,13 @@ const useAddDonorMutation = (csrfToken, formRef) => {
       queryClient.invalidateQueries(['donors'], { exact: true });
 
       if (formRef.current) formRef.current.reset();
+
+      // Send the thank you email after successful donor addition
+      try {
+        sendThankYouEmail(newDonorData, emailApiUrl);
+      } catch (emailError) {
+        toast.error('Failed to send thank you email.');
+      }
     },
 
     onError: error => {

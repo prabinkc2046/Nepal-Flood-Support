@@ -2,13 +2,11 @@ import React, { useRef, useState } from 'react';
 import Spinner from '../Spinner/Spinner';
 import useCsrfToken from '../utils/useCsrfToken';
 import useAddDonorMutation from '../utils/useAddDonorMutation';
-import sendThankYouEmail from '../utils/sendThankYouEmail';
 import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
   const form = useRef();
   const [publishName, setPublishName] = useState(false);
-  const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
   const {
     csrfToken,
@@ -48,9 +46,8 @@ const Acknowledge = () => {
       try {
         // Call mutation to add donor
         addDonorMutation.mutate(donorData);
-        await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
-        console.error('Error during form submission:', error);
+        console.error('Error during form submission:');
       }
     }
   };
