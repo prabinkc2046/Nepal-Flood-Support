@@ -2,11 +2,13 @@ import React, { useRef, useState } from 'react';
 import Spinner from '../Spinner/Spinner';
 import useCsrfToken from '../utils/useCsrfToken';
 import useAddDonorMutation from '../utils/useAddDonorMutation';
+import sendThankYouEmail from '../utils/sendThankYouEmail';
 import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
   const form = useRef();
   const [publishName, setPublishName] = useState(false);
+  const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
   const {
     csrfToken,
@@ -46,6 +48,7 @@ const Acknowledge = () => {
       try {
         // call mutation to add donor
         await addDonorMutation.mutateAsync(donorData);
+        await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
         console.error(error);
       }
@@ -138,7 +141,7 @@ const Acknowledge = () => {
             </div>
           </div>
           <button type="submit" disabled={addDonorMutation.isLoading}>
-            {addDonorMutation.isLoading ? (
+            {addDonorMutation.isPending ? (
               <>
                 <Spinner text="Submitting... this might take a moment" />
               </>
