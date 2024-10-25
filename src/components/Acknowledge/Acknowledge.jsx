@@ -49,7 +49,7 @@ const Acknowledge = () => {
       try {
         // call mutation to add donor
         addDonorMutation.mutate(donorData);
-        await sendThankYouEmail(donorData, emailApiUrl);
+        // await sendThankYouEmail(donorData, emailApiUrl);
       } catch (error) {
         console.error(error);
       }
@@ -152,7 +152,7 @@ const Acknowledge = () => {
           </button>
         </form>
 
-        {submitted && (
+        {addDonorMutation.isSuccess && (
           <div className="thank-you-message card">
             <div className="overlay-top">
               <h2>Thank You for Your Donation!</h2>
