@@ -12,7 +12,7 @@ const Contributor = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const { contributors, isLoading, isError, error, refetch } = useDonors();
-
+  console.log(contributors);
   const sortContributors = useCallback(
     criteria => {
       switch (criteria) {
@@ -120,8 +120,7 @@ const Contributor = () => {
               <div>
                 <p className="thoughts">
                   {capitalizeFirstLetter(
-                    contributor.thoughts
-                      .trim()
+                    (contributor.thoughts ? contributor.thoughts.trim() : '')
                       .split(/\s+/)
                       .slice(0, 4)
                       .join(' ') + '...'
