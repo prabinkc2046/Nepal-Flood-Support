@@ -7,7 +7,6 @@ import {
   faCircleMinus,
   faHandsHelping,
 } from '@fortawesome/free-solid-svg-icons';
-// import useContributors from '../utils/useContributors';
 import useDonors from '../utils/useDonor';
 import './Update.css';
 import ProgressBarSkeleton from '../SkeletonCollection/ProgressBarSkeleton/ProgressBarSkeleton';

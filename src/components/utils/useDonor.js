@@ -22,7 +22,15 @@ const useDonors = () => {
   // Calculate total amount raised
   const totalRaised = useMemo(
     () =>
-      contributors.reduce((acc, contributor) => acc + contributor.amount, 0),
+      (contributors && Array.isArray(contributors) ? contributors : []).reduce(
+        (acc, contributor) => {
+          if (contributor && contributor.amount === 'number') {
+            return acc + contributor.amount;
+          }
+          return acc;
+        },
+        0
+      ),
     [contributors]
   );
 

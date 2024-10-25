@@ -1,16 +1,22 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import axios from 'axios';
+import React, { useRef, useState } from 'react';
 import Spinner from '../Spinner/Spinner';
+import useCsrfToken from '../utils/useCsrfToken';
+import useAddDonorMutation from '../utils/useAddDonorMutation';
 import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
   const form = useRef();
-  const [submitted, setSubmitted] = useState(false);
   const [publishName, setPublishName] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [csrfToken, setCsrfToken] = useState('');
 
+  const {
+    csrfToken,
+    isError: isCsrfError,
+    error,
+    refetch: refetchToken,
+    isLoading: isTokenLoading,
+  } = useCsrfToken();
+
+  const addDonorMutation = useAddDonorMutation(csrfToken, form);
   const handleToggle = () => {
     setPublishName(prevState => !prevState);
   };
@@ -19,26 +25,8 @@ const Acknowledge = () => {
     return new Date().toISOString();
   };
 
-  // Fetch CSRF token from the API on component mount
-  useEffect(() => {
-    const fetchCsrfToken = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/csrf_token`,
-          { withCredentials: true } // Ensure cookies are included
-        );
-        setCsrfToken(response.data.csrfToken);
-      } catch (error) {
-        console.error('Failed to fetch CSRF token.');
-      }
-    };
-
-    fetchCsrfToken();
-  }, []);
-
   const handleSubmit = async e => {
     e.preventDefault();
-    setIsSubmitting(true);
 
     if (form.current) {
       const formData = new FormData(form.current);
@@ -56,45 +44,10 @@ const Acknowledge = () => {
       };
 
       try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
-
-        // Add donor to the database first
-        const addDonorResponse = await axios.post(
-          `${apiUrl}/add_donor`,
-          donorData,
-          {
-            headers: {
-              'X-CSRF-Token': csrfToken, // Sending the CSRF token with the request
-            },
-            withCredentials: true, // Ensure cookies are included in the request
-          }
-        );
-
-        if (addDonorResponse.status === 200) {
-          setSubmitted(true); // Show thank-you message immediately after adding donor
-          form.current.reset(); // Reset the form
-
-          // Now send the email asynchronously in the background
-          axios.post(`${emailApiUrl}/send-email`, donorData).catch(error => {
-            console.error('Failed to send email:', error);
-            toast.error(
-              'Failed to send thank-you email, but your donation was recorded.'
-            );
-          });
-        } else {
-          toast.error('Something went wrong! Please try again.');
-        }
+        // call mutation to add donor
+        await addDonorMutation.mutateAsync(donorData);
       } catch (error) {
-        if (error.response && error.response.data.detail) {
-          toast.error(error.response.data.detail);
-        } else {
-          toast.error(
-            'Failed to submit your donation details. Please try again later.'
-          );
-        }
-      } finally {
-        setIsSubmitting(false); // After the donor is added, stop the spinner
+        console.error(error);
       }
     }
   };
@@ -107,6 +60,14 @@ const Acknowledge = () => {
           Please provide your details so we can send you a thank you note for
           your generous support.
         </p>
+
+        {isTokenLoading && <Spinner text="Please wait until token is loaded" />}
+        {isCsrfError && (
+          <div className="error">
+            <p>{error.message}</p>
+            <button onClick={() => refetchToken()}>Please try again</button>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} ref={form} className="donation-form">
           <div className="form-group">
@@ -176,8 +137,8 @@ const Acknowledge = () => {
               </label>
             </div>
           </div>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? (
+          <button type="submit" disabled={addDonorMutation.isLoading}>
+            {addDonorMutation.isLoading ? (
               <>
                 <Spinner text="Submitting... this might take a moment" />
               </>
@@ -187,7 +148,7 @@ const Acknowledge = () => {
           </button>
         </form>
 
-        {submitted && (
+        {addDonorMutation.isSuccess && (
           <div className="thank-you-message card">
             <div className="overlay-top">
               <h2>Thank You for Your Donation!</h2>
