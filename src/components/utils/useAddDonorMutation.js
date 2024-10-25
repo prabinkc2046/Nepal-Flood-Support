@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const useAddDonorMutation = (csrfToken, formRef) => {
+const useAddDonorMutation = (csrfToken, formRef, setSubmitted) => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const queryClient = useQueryClient();
@@ -32,6 +32,7 @@ const useAddDonorMutation = (csrfToken, formRef) => {
       queryClient.invalidateQueries(['donors'], { exact: true });
 
       if (formRef.current) formRef.current.reset();
+      setSubmitted(true);
     },
 
     onError: error => {

@@ -7,6 +7,7 @@ import './Acknowledge.css'; // Custom CSS for styling
 
 const Acknowledge = () => {
   const form = useRef();
+  const [submitted, setSubmitted] = useState(false);
   const [publishName, setPublishName] = useState(false);
   const emailApiUrl = process.env.REACT_APP_EMAIL_API_URL;
 
@@ -18,7 +19,7 @@ const Acknowledge = () => {
     isLoading: isTokenLoading,
   } = useCsrfToken();
 
-  const addDonorMutation = useAddDonorMutation(csrfToken, form);
+  const addDonorMutation = useAddDonorMutation(csrfToken, form, setSubmitted);
   const handleToggle = () => {
     setPublishName(prevState => !prevState);
   };
@@ -151,7 +152,7 @@ const Acknowledge = () => {
           </button>
         </form>
 
-        {addDonorMutation.isSuccess && (
+        {submitted && (
           <div className="thank-you-message card">
             <div className="overlay-top">
               <h2>Thank You for Your Donation!</h2>
