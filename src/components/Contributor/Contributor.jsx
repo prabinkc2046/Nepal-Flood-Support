@@ -119,12 +119,15 @@ const Contributor = () => {
 
               <div>
                 <p className="thoughts">
-                  {capitalizeFirstLetter(
-                    (contributor.thoughts ? contributor.thoughts.trim() : '')
-                      .split(/\s+/)
-                      .slice(0, 4)
-                      .join(' ') + '...'
-                  )}
+                  {contributor.thoughts
+                    ? capitalizeFirstLetter(
+                        contributor.thoughts
+                          .trim()
+                          .split(/\s+/)
+                          .slice(0, 4)
+                          .join(' ') + '...'
+                      )
+                    : 'No message provided'}
                 </p>
                 <p className="amount"> ${contributor.amount}</p>
               </div>
