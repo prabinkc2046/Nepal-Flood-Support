@@ -64,12 +64,12 @@ const Update = () => {
         </>
       )}
 
-      {error && (
+      {/* {error && (
         <div className="error">
           <p>Failed to load Update: {error.message}</p>
           <button onClick={() => refetch()}>Try Again</button>
         </div>
-      )}
+      )} */}
 
       {!isLoading && !error && (
         <>

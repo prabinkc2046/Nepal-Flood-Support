@@ -16,6 +16,7 @@ import Transparency from './components/Transparency/Transparency';
 import Acknowledge from './components/Acknowledge/Acknowledge';
 import Allocation from './components/Allocation/Allocation';
 import PrivacyPolicy from './components/Privacy/PrivacyPolicy/PrivacyPolicy';
+import Gallery from './components/Gallery/Gallery';
 function App() {
   return (
     <>
@@ -43,6 +44,7 @@ function App() {
         <GetInvolved />
         <Contributor />
         <Update />
+        <Gallery />
         <FAQs />
         <Contact />
         <PrivacyPolicy />
