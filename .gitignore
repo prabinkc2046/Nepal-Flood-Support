@@ -61,7 +61,6 @@ temp/
 *.zip
 
 # Ignore specific React files
-*.jsx
 *.js.map
 
 # Custom ignore patterns
