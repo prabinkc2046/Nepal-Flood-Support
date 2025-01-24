@@ -1,0 +1,173 @@
+.gallery-imageGallery {
+  align-self: stretch;
+  position: relative;
+  line-height: 120%;
+}
+
+.gallery-loremIpsumDolor {
+  align-self: stretch;
+  position: relative;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: left;
+}
+
+.gallery-sectionTitle {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  color: #c0392b;
+}
+
+.gallery-placeholderImage1 {
+  width: 313.6px;
+  position: relative;
+  height: 176px;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.gallery-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.gallery-dot1 {
+  width: 4px;
+  height: 4px;
+  position: relative;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s ease;
+}
+
+.gallery-activeDot {
+  background-color: #c0392b;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.gallery-sliderDots {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.gallery-iconLeftArrowAlt {
+  width: 24px;
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.gallery-button {
+  border-radius: 50px;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.gallery-sliderButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.gallery-content1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 32px;
+}
+
+.gallery-gallery20 {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 64px 20px;
+  box-sizing: border-box;
+  gap: 48px;
+  text-align: left;
+  font-size: 36px;
+  color: #000;
+  font-family: Roboto;
+}
+
+@media (min-width: 768px) {
+  .gallery-loremIpsumDolor {
+    font-size: 18px;
+  }
+
+  .gallery-sectionTitle {
+    align-items: center;
+    gap: 24px;
+  }
+
+  .gallery-placeholderImage1 {
+    width: 1280px;
+    height: 600px;
+  }
+
+  .gallery-content {
+    gap: 32px;
+  }
+
+  .gallery-gallery20 {
+    padding: 112px 64px;
+    gap: 80px;
+    font-size: 48px;
+    color: #333;
+  }
+
+  .gallery-container {
+    gap: 48px;
+  }
+
+  .gallery-content1 {
+    width: 1312px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .gallery-dot1 {
+    height: 8px;
+    width: 8px;
+  }
+
+  .gallery-sliderDots {
+    gap: 8px;
+  }
+}
