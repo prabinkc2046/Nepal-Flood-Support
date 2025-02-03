@@ -17,6 +17,7 @@ import Acknowledge from './components/Acknowledge/Acknowledge';
 import Allocation from './components/Allocation/Allocation';
 import PrivacyPolicy from './components/Privacy/PrivacyPolicy/PrivacyPolicy';
 import Gallery from './components/Gallery/Gallery';
+import { Analytics } from "@vercel/analytics/react"
 function App() {
   return (
     <>
