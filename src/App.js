@@ -51,6 +51,7 @@ function App() {
         <PrivacyPolicy />
       </div>
       <Footer />
+      <Analytics />
     </>
   );
 }
